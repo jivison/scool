@@ -55,6 +55,12 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+<<<<<<< HEAD
 
 # Calendar gem. https://github.com/excid3/simple_calendar
 gem "simple_calendar", "~> 2.0"
+=======
+#Semantic UI :https://github.com/doabit/semantic-ui-sass
+gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
+gem 'semantic-ui-rails'
+>>>>>>> 1c15bb77fe98778bebe10aa28cf47e1db3bcce01
