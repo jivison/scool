@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_05_034359) do
+ActiveRecord::Schema.define(version: 2019_10_05_171338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assignments", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "attendances", force: :cascade do |t|
     t.boolean "present"
@@ -23,6 +29,18 @@ ActiveRecord::Schema.define(version: 2019_10_05_034359) do
     t.bigint "course_block_id", null: false
     t.index ["course_block_id"], name: "index_attendances_on_course_block_id"
     t.index ["course_role_id"], name: "index_attendances_on_course_role_id"
+  end
+
+  create_table "course_assignments", force: :cascade do |t|
+    t.date "assign_date"
+    t.date "due_date"
+    t.boolean "is_active"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "assignment_id", null: false
+    t.bigint "course_id", null: false
+    t.index ["assignment_id"], name: "index_course_assignments_on_assignment_id"
+    t.index ["course_id"], name: "index_course_assignments_on_course_id"
   end
 
   create_table "course_blocks", force: :cascade do |t|
@@ -70,6 +88,8 @@ ActiveRecord::Schema.define(version: 2019_10_05_034359) do
 
   add_foreign_key "attendances", "course_blocks"
   add_foreign_key "attendances", "course_roles"
+  add_foreign_key "course_assignments", "assignments"
+  add_foreign_key "course_assignments", "courses"
   add_foreign_key "course_blocks", "course_roles"
   add_foreign_key "course_blocks", "courses"
   add_foreign_key "course_roles", "courses"
