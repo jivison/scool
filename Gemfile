@@ -27,7 +27,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 
-gem 'font-awesome-rails'
 gem 'selectize-rails'
 gem 'pry-rails'
 gem "cancancan"

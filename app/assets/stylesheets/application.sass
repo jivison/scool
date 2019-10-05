@@ -14,28 +14,30 @@
  *= require_self
  */
 
-// Universal styles
 
-ol, ul
-  list-style: none
-
-
-
-// Site default colors
-
-$scool-darkest-blue: #4A5FFF
+// Colors
+$bg-blue: #e8f4ff
+$card-container: #bddfff
 $scool-dark-blue: #5385ED
 $scool-blue: #58B0FF
 $scool-light-blue: #46BEE8
 $scool-lightest-blue: #40F5FF
 
+// Site body
+body
+  background-color: $bg-blue
+
 // Calendar
 .calendar
   .card
-    background-color: $scool-darkest-blue
+    background-color: $card-container
     box-shadow: #000000
   .calendar-box
-    background-color: $scool-dark-blue
+    background-color: $card-container
   .day
     background-color: $scool-lightest-blue
     padding: 0.125em
+
+// Random
+ol, ul
+  list-style: none
