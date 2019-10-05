@@ -1,0 +1,2 @@
+class CourseBlock < ApplicationRecord
+end
