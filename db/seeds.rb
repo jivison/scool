@@ -58,7 +58,8 @@ courses = Course.all
 NUM_ASSIGNMENTS.times do
   name = Faker::Books::CultureSeries.book
   Assignment.create(
-    name: name
+    name: name,
+    description: Faker::TvShows::MichaelScott.quote
   )
 end
 
