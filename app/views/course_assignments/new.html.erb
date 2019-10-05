@@ -1,7 +1,7 @@
 <article className="new-course-assignment">
     <select id="assignment-select">
         <%= @assignments.map do |assignment| %>
-            <option value=<%= assignment.id %> data-assignment='<%= JSON.dump(assignment.attributes.to_options) %>' ><%= assignment.name %></option>
+            <option id='select-<%= assignment.id %>'value=<%= assignment.id %> data-assignment='<%= JSON.dump(assignment.attributes.to_options) %>' ><%= assignment.name %></option>
         <% end %>
     </select>
 
@@ -13,9 +13,9 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        console.log("jdisnkjfnkl");
-        console.log(JSON.parse(document.getElementById("assignment-select").getAttr("data-assignment")));
-        document.getElementById("assignment-select").addEventListener("")
+        document.getElementById("assignment-select").addEventListener("change", (event) => {
+            console.log(document.getElementById(`select-${event.target.value}`).dataset.);
+        })
     }, false);
 
 </script>
