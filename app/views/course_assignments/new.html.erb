@@ -1,0 +1,7 @@
+<article className="new-course-assignment">
+    <select>
+        <%= @assignments.map do |assignment| %>
+            <option value=<%= assignment.id %>><%= assignment.name %></option>
+        <% end %>
+    </select>
+</article>

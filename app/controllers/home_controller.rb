@@ -1,8 +1,7 @@
 class HomeController < ApplicationController
     def index
-        @courses = [
-            {title: "test"}
-        ]
+        # @assignments
+        # @courses
 
         # role = current_user.current_role.type
         # if role === "student"

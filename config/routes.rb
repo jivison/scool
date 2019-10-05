@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   get 'home/index'
 
   resources :sessions, only: [:create, :destroy, :new]
+  resources :course_assignments
 
 end
