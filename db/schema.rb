@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_05_210122) do
+ActiveRecord::Schema.define(version: 2019_10_05_220400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2019_10_05_210122) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "description"
   end
 
   create_table "attendances", force: :cascade do |t|
@@ -46,7 +47,7 @@ ActiveRecord::Schema.define(version: 2019_10_05_210122) do
 
   create_table "course_blocks", force: :cascade do |t|
     t.date "date"
-    t.string "type"
+    t.string "course_block_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "course_id", null: false
@@ -56,7 +57,7 @@ ActiveRecord::Schema.define(version: 2019_10_05_210122) do
   end
 
   create_table "course_roles", force: :cascade do |t|
-    t.string "type"
+    t.string "role"
     t.boolean "is_archived"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -70,7 +71,7 @@ ActiveRecord::Schema.define(version: 2019_10_05_210122) do
     t.string "name"
     t.text "description"
     t.string "status"
-    t.string "type"
+    t.string "course_type"
     t.date "start_date"
     t.date "end_date"
     t.datetime "created_at", precision: 6, null: false
@@ -85,6 +86,7 @@ ActiveRecord::Schema.define(version: 2019_10_05_210122) do
     t.bigint "course_role_submitter_id"
     t.bigint "course_role_marker_id"
     t.bigint "course_assignment_id", null: false
+    t.text "feedback"
     t.index ["course_assignment_id"], name: "index_submissions_on_course_assignment_id"
   end
 
