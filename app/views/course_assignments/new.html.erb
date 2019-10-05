@@ -1,7 +1,21 @@
 <article className="new-course-assignment">
-    <select>
+    <select id="assignment-select">
         <%= @assignments.map do |assignment| %>
-            <option value=<%= assignment.id %>><%= assignment.name %></option>
+            <option value=<%= assignment.id %> data-assignment='<%= JSON.dump(assignment.attributes.to_options) %>' ><%= assignment.name %></option>
         <% end %>
     </select>
+
+    <div class="assignment-info">
+
+    </div>
+
 </article>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log("jdisnkjfnkl");
+        console.log(JSON.parse(document.getElementById("assignment-select").getAttr("data-assignment")));
+        document.getElementById("assignment-select").addEventListener("")
+    }, false);
+
+</script>

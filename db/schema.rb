@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2019_10_05_220400) do
 
   create_table "course_blocks", force: :cascade do |t|
     t.date "date"
-    t.string "course_block_type"
+    t.string "type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "course_id", null: false
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2019_10_05_220400) do
   end
 
   create_table "course_roles", force: :cascade do |t|
-    t.string "role"
+    t.string "type"
     t.boolean "is_archived"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2019_10_05_220400) do
     t.string "name"
     t.text "description"
     t.string "status"
-    t.string "course_type"
+    t.string "type"
     t.date "start_date"
     t.date "end_date"
     t.datetime "created_at", precision: 6, null: false

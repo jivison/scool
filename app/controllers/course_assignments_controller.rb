@@ -7,7 +7,8 @@ class CourseAssignmentsController < ApplicationController
 
     def new 
         @assignments = Assignment.all.select do |assignment|
-            !(@course_assignment.course.course_assignments.map(&:id).include? assignment.id)
+            true
+            # !(@course_assignment.course.course_assignments.map(&:id).include? assignment.id)
         end
     end
     
