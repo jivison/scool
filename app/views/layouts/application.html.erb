@@ -1,41 +1,54 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>S-cool</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_pack_tag 'application' %>
-  </head>
+<head>
+  <title>S-cool</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body>
-<nav class='navbar navbar-light bg-light d-flex flex-row justify-content:space-between'>
-<h3>My Dash Board</h3>
-<header class='navbar navbar-fixed-top navbar-inverse'>
-  <div class='container'>
-  <%#if you click the logo, it directs to the homepage%>
-    <%#= link_to image_tag('logo.png', alt: 'logo'),
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_pack_tag 'application' %>
+</head>
+
+<body>
+  <nav>
+    <header class='navbar navbar-fixed-top navbar-inverse'>
+      <div class='ui stackable menu'>
+        <%#if you click the logo, it directs to the homepage%>
+        <div class='item'>
+          <%= link_to image_tag('logo.png', alt: 'logo', style: "width:50px"),
         '/' %>
-    <nav>
-      <%# we need to create if user signed in  %>
-      <%# if user_signed_in?  hello #{current.user.name} thing later%>
-      </span>
-        <ul class='nav navbar-nav navbar-right'>
-        <li><%= link_to 'Sign In' %></li>
-        |
-        <%= link_to 'Sign Out', sessions_path, method: :delete %>
-        <li><%= link_to '' %></li>
-        |
-        <%#= link_to image_tag('profile.png', alt: 'profile'),
-          '/profile'%>
-      </ul>
-    </nav>
-  </div>
-</header>
-<div class='container'>
+        </div>
+        <%# we need to create if user signed in  %>
+        <%# if user_signed_in?  hello #{current.user.name} thing later%>
+        <div class="container">
+        <div class='item'>
+            <h3>My Dash Board</h3>
+          </div>
+          </div>
+        <div class='right menu'>
+          <div class='item'>
+          <%# if user_signed_in? %>
+          <span>Hi, <%#=link_to "#{current_user.name}", edit_user_path(current_user)%>!
+          </span>
+          |
+          <%#= link_to 'Sign Out', '', method: :delete %>
+          <%# else %>
+          <%#= link_to 'Sign In', '' %>
+          |
+          <%# end %>
+          </div>
+        </div>
+
+        <div class='item'><%= link_to image_tag('profile_pic.png', alt: 'profile',style: "width:50px"),
+          '/courses'%>
+        </div>
+      </div>
+    </header>
+    <div class='container'>
+
+    </div>
+</body>
 <%= yield %>
-</div>
-  </body>
 </html>
 
