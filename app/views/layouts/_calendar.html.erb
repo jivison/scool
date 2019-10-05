@@ -1,0 +1,5 @@
+<article class="calendar">
+    <%= week_calendar(attribute: :type) number_of_weeks: 2 do |date| %>
+        <%= date %>
+        <%= @courses = user.course_roles(&:courses).flatten %>
+</article>
