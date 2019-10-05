@@ -15,7 +15,7 @@
 <header class='navbar navbar-fixed-top navbar-inverse'>
   <div class='container'>
   <%#if you click the logo, it directs to the homepage%>
-    <%= link_to image_tag('logo.png', alt: 'logo'),
+    <%#= link_to image_tag('logo.png', alt: 'logo'),
         '/' %>
     <nav>
       <%# we need to create if user signed in  %>
@@ -24,10 +24,10 @@
         <ul class='nav navbar-nav navbar-right'>
         <li><%= link_to 'Sign In' %></li>
         |
-        <%= link_to 'Sign Out', session_path, method: :delete %>
+        <%= link_to 'Sign Out', sessions_path, method: :delete %>
         <li><%= link_to '' %></li>
         |
-        <%= link_to image_tag('profile.png', alt: 'profile'),
+        <%#= link_to image_tag('profile.png', alt: 'profile'),
           '/profile'%>
       </ul>
     </nav>
