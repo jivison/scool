@@ -47,7 +47,7 @@ NUM_COURSES.times do
     name: name,
     description: description,
     status:  ["active", "inactive"].shuffle.first,
-    role: ["Computer", "Business", "Art"].shuffle.first,
+    course_type: ["Computer", "Business", "Art"].shuffle.first,
     start_date: start_date,
     end_date: end_date
   )

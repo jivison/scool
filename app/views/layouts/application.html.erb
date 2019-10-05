@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Scool</title>
+    <title>S-cool</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,32 @@
   </head>
 
   <body>
-    <%= yield %>
+<nav class='navbar navbar-light bg-light d-flex flex-row justify-content:space-between'>
+<h3>My Dash Board</h3>
+<header class='navbar navbar-fixed-top navbar-inverse'>
+  <div class='container'>
+  <%#if you click the logo, it directs to the homepage%>
+    <%#= link_to image_tag('logo.png', alt: 'logo'),
+        '/' %>
+    <nav>
+      <%# we need to create if user signed in  %>
+      <%# if user_signed_in?  hello #{current.user.name} thing later%>
+      </span>
+        <ul class='nav navbar-nav navbar-right'>
+        <li><%= link_to 'Sign In' %></li>
+        |
+        <%= link_to 'Sign Out', sessions_path, method: :delete %>
+        <li><%= link_to '' %></li>
+        |
+        <%#= link_to image_tag('profile.png', alt: 'profile'),
+          '/profile'%>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class='container'>
+<%= yield %>
+</div>
   </body>
 </html>
+
