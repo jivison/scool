@@ -14,7 +14,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         document.getElementById("assignment-select").addEventListener("change", (event) => {
-            console.log(document.getElementById(`select-${event.target.value}`).dataset.);
+            console.log(JSON.parse(document.getElementById(`select-${event.target.value}`).dataset.assignment));
         })
     }, false);
 
