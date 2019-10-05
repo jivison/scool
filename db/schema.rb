@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_05_172617) do
+ActiveRecord::Schema.define(version: 2019_10_05_220400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2019_10_05_172617) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "description"
   end
 
   create_table "attendances", force: :cascade do |t|
@@ -39,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_10_05_172617) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "assignment_id", null: false
     t.bigint "course_id", null: false
+    t.bigint "course_role_assigner_id"
     t.index ["assignment_id"], name: "index_course_assignments_on_assignment_id"
     t.index ["course_id"], name: "index_course_assignments_on_course_id"
   end
@@ -81,6 +83,11 @@ ActiveRecord::Schema.define(version: 2019_10_05_172617) do
     t.date "submission_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "course_role_submitter_id"
+    t.bigint "course_role_marker_id"
+    t.bigint "course_assignment_id", null: false
+    t.text "feedback"
+    t.index ["course_assignment_id"], name: "index_submissions_on_course_assignment_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -96,9 +103,13 @@ ActiveRecord::Schema.define(version: 2019_10_05_172617) do
   add_foreign_key "attendances", "course_blocks"
   add_foreign_key "attendances", "course_roles"
   add_foreign_key "course_assignments", "assignments"
+  add_foreign_key "course_assignments", "course_roles", column: "course_role_assigner_id"
   add_foreign_key "course_assignments", "courses"
   add_foreign_key "course_blocks", "course_roles"
   add_foreign_key "course_blocks", "courses"
   add_foreign_key "course_roles", "courses"
   add_foreign_key "course_roles", "users"
+  add_foreign_key "submissions", "course_assignments"
+  add_foreign_key "submissions", "course_roles", column: "course_role_marker_id"
+  add_foreign_key "submissions", "course_roles", column: "course_role_submitter_id"
 end
