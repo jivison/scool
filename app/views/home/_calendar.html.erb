@@ -1,0 +1,9 @@
+<div class="calendar card">
+    <h2>Schedule</h2>
+    <div class="calendar-box">
+    <%= week_calendar number_of_weeks: 2 do |date| %>
+        <%= date.day %>
+        <%#= @courses = @current_user.course_roles(&:courses).flatten %>
+    <% end %>
+    </div>
+</div>
