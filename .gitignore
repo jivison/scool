@@ -45,6 +45,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+
 ### Rails ###
 *.rbc
 capybara-*.html
@@ -100,6 +101,7 @@ bower.json
 # Ignore node_modules
 node_modules/
 
+backend/
 # Ignore precompiled javascript packs
 /public/packs
 /public/packs-test
