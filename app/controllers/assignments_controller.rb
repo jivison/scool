@@ -1,4 +1,6 @@
 class AssignmentsController < ApplicationController
+  before_action :find_assignment, only: [:show, :edit, :update, :destroy]
+
   def index
     @assignments = Assignment.all
   end
@@ -8,31 +10,41 @@ class AssignmentsController < ApplicationController
   end
 
   def create
-    assignment_params = params.require(:assignment).permit(:name, :description)
-    Assignment.create assignment_params
-    # render text: "Assignment created successfully"
-    # @question = Question.new question_params
-    # @question.user = current_user
+    @assignment = Assignment.new assignment_params
 
-    # if @question.save
-    #   flash[:notice] = "Question created successfully"
-    #   #if question is saved successfully redirect them to the question they just created
-    #   redirect_to question_path(@question)
-    # else
-    #   #if question is not saved successfully render new
-    #   render :new
-    # end
+    if @assignment.save
+      redirect_to assignment_path(@assignment)
+    else
+      render :new
+    end
+  end
+
+  def show
   end
 
   def edit
   end
 
   def update
-  end
-
-  def delete
+    if @assignment.update assignment_params
+      redirect_to assignment_path(@assignment)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @assignment.destroy
+    redirect_to assignments_path
+  end
+
+  private
+
+  def assignment_params
+    params.require(:assignment).permit(:name, :description)
+  end
+
+  def find_assignment
+    @assignment = Assignment.find params[:id]
   end
 end
