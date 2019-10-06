@@ -2,25 +2,27 @@
 <html>
 
 <head>
-  <title>S-cool</title>
+  <title>S-Cool</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_pack_tag 'application' %>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" rel="stylesheet">
 </head>
-
 <body>
-<<<<<<< HEAD
 
 <div class='app-header'>
   <%= render 'navbar'%>
 </div>
+
 <div class='free-column'></div>
+
 <div class='content-container'>
   <%= yield %>
 </div>
+
 <div class='free-column'></div>
+
 </body>
 </html>
 
