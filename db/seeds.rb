@@ -34,7 +34,7 @@ super_user = User.create(
   email: "admin@codecore.ca",
   status: "active",
   password: PASSWORD,
-  # is_admin: true
+  is_admin: true
 )
 
 NUM_COURSES.times do
