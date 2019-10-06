@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
     end
 
     def current_user
-        User.find_by(session[:user_id])
+        User.find_by(id: session[:user_id])
     end
     
     helper_method :current_user
@@ -20,5 +20,11 @@ class ApplicationController < ActionController::Base
     end
 
     helper_method :user_signed_in?
+
+    def is_marked?(course_assignment)
+        course_assignment.submissions.find_by(course_role_submitter_id: current_user.id).present?
+    end
+
+    helper_method :is_marked?
 
 end
