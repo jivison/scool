@@ -1,2 +1,0 @@
-class CourseAssignment < ApplicationRecord
-end
