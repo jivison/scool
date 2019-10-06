@@ -39,7 +39,7 @@ end
 users = User.all
 
 NUM_COURSES.times do
-  name = Faker::Book
+  name = Faker::Book.title
   description = Faker::Quote.famous_last_words
   start_date = Faker::Date.between(from: 30.days.ago, to: Date.today)
   end_date = Faker::Date.forward(days: 90) 

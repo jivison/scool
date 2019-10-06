@@ -1,5 +1,7 @@
 class CourseAssignment < ApplicationRecord
 
+    belongs_to :course
+
     def is_marked?
         self.submissions.find_by(course_role_submitter_id: current_user.id).present?
     end

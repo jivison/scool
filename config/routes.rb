@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   root to: "home#index"
   get 'home/index'
 
+  resources :courses do
+    resources :course_assignments
+  end
+  
   resources :sessions, only: [:create, :destroy, :new]
-  resources :course_assignments
 
 end
