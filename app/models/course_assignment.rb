@@ -3,7 +3,6 @@ class CourseAssignment < ApplicationRecord
 
   belongs_to :course
   belongs_to :assignment
-  belongs_to :course_role
 
   before_validation :set_default_is_active
 
