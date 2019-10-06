@@ -1,0 +1,15 @@
+<article class="course-assignment-show">
+    <h1><%= @course_assignment.assignment.name %></h1>
+    <p><%= @course_assignment.assignment.description %></p>
+
+    <p>Assign Date: <%= @course_assignment.assign_date %></p>
+    <p>Due Date: <%= @course_assignment.due_date %>
+
+    <% if @course_assignment.is_marked? %>
+        <p>You got: <%= @course_assignment.submissions.find_by(course_role_submitter_id: current_user.id).grade %></p>
+        <small>Marked by<%= CourseRole.find(@course_assignment.submissions.find_by(course_role_submitter_id: current_user.id).course_role_marker_id).full_name %></small>
+    <% else %>
+        <p>This assignment has not yet been marked...</p>
+    <% end %>
+
+</article>

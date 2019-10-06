@@ -14,33 +14,21 @@ NUM_COURSEASSIGNMENTS = 10
 NUM_COURSEBLOCKS = 40
 PASSWORD = "supersecret"
 
+CourseAssignment.delete_all
+CourseBlock.delete_all
+CourseRole.delete_all
 User.delete_all
 Course.delete_all
 Assignment.delete_all
-CourseAssignment.delete_all
-CourseBlock.delete_all
 
 super_user = User.create(
   first_name: "ian",
   last_name: "mckinnon",
   email: "admin@codecore.ca",
   status: "active",
-  password: PASSWORD
+  password: PASSWORD,
+  # is_admin: true
 )
-
-NUM_USERS.times do
-  first_name =  Faker::Name.first_name
-  last_name = Faker::Name.last_name
-  email = Faker::Internet.email
-  User.create(
-    first_name: first_name,
-    last_name: last_name,
-    email: "#{first_name.downcase}.#{last_name.downcase}@codecore.ca",
-    password: "codecore"
-  )
-end
-
-users = User.all
 
 NUM_COURSES.times do
   name = Faker::Book.title
@@ -58,6 +46,28 @@ NUM_COURSES.times do
 end
 
 courses = Course.all
+
+NUM_USERS.times do
+  first_name =  Faker::Name.first_name
+  last_name = Faker::Name.last_name
+  user = User.create(
+    first_name: first_name,
+    last_name: last_name,
+    email: "#{first_name.downcase}.#{last_name.downcase}@codecore.ca",
+    password: "codecore"
+  )
+
+  cr = CourseRole.create(
+    role: ["student", "instructor"].sample,
+    user_id: user.id,
+    course_id: Course.all.sample.id,  
+    is_archived: false
+  )
+  
+end
+
+users = User.all
+
 
 NUM_ASSIGNMENTS.times do
   name = Faker::Books::CultureSeries.book
@@ -77,9 +87,10 @@ NUM_COURSEASSIGNMENTS.times do
   CourseAssignment.create(
     assign_date: assign_date,
     due_date: due_date,
-    is_active: [true, false].shuffle.first,
+    is_active: [true, false].sample,
     assignment_id: Assignment.all.sample.id,
-    course_id: Course.all.sample.id
+    course_id: Course.all.sample.id,
+    course_role_assigner_id: CourseRole.where(role: "instructor").sample.id
   )
 end
 
@@ -88,12 +99,12 @@ course_assignments = CourseAssignment.all
 
 
 
-
 puts Cowsay.say("Generated #{users.count} users", :stegosaurus)
 puts Cowsay.say("Generated #{courses.count} courses", :frogs)
 puts Cowsay.say("Generated #{assignments.count} assignments", :frogs)
 puts Cowsay.say("Generated #{course_assignments.count} course_assignments", :frogs)
-puts Cowsay.say("Generated #{course_blocks.count} course_blocks", :frogs)
+puts Cowsay.say("Generated #{CourseRole.count} course_roles", :cheese)
+# puts Cowsay.say("Generated #{course_blocks.count} course_blocks", :frogs)
 
 puts "Login with #{super_user.email} and password: #{PASSWORD}"
 
