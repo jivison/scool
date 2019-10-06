@@ -65,7 +65,6 @@ NUM_ASSIGNMENTS.times do
   Assignment.create(
     name: name,
     description: description, 
-
   )
 end
 
