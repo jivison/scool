@@ -2,14 +2,24 @@
     <h1><%= @course_assignment.assignment.name %></h1>
     <p><%= @course_assignment.assignment.description %></p>
 
-    <p>Assign Date: <%= @course_assignment.assign_date %></p>
-    <p>Due Date: <%= @course_assignment.due_date %>
+    <p>Assigned <%= distance_of_time_in_words(Time.now, @course_assignment.assign_date) %> ago (<%= @course_assignment.assign_date.strftime('%H:%M %a, %d %b %Y') %>)</p>
+    <p>
+        <% if @course_assignment.due_date > Time.now %>
+            Due in <%= distance_of_time_in_words(Time.now, @course_assignment.due_date) %>
+        <% else %>
+            Due <%= @course_assignment.due_date %> ago
+        <% end %>
+        (<%= @course_assignment.due_date.strftime('%H:%M %a, %d %b %Y') %>)
+    </p>
 
-    <% if @course_assignment.is_marked? %>
+    <% if is_marked?(@course_assignment) %>
         <p>You got: <%= @course_assignment.submissions.find_by(course_role_submitter_id: current_user.id).grade %></p>
         <small>Marked by<%= CourseRole.find(@course_assignment.submissions.find_by(course_role_submitter_id: current_user.id).course_role_marker_id).full_name %></small>
     <% else %>
         <p>This assignment has not yet been marked...</p>
     <% end %>
+
+    <%= link_to 'Edit', edit_course_course_assignment_path(@course_assignment.course, @course_assignment) %>
+    <%= link_to 'Unassign', course_course_assignment_path(@course_assignment.course, @course_assignment), method: :delete, data: {confirm: "Are you sure you want to unassign this?"}%>
 
 </article>

@@ -1,8 +1,8 @@
 class CourseAssignmentsController < ApplicationController
-    before_action :find_course_assignment, only: [:show]
+    before_action :find_course_assignment, only: [:show, :edit, :update, :destroy]
 
     def index
-        @course_assignments = CourseAssignment.all
+        @course = Course.find(params[:course_id])
     end
 
     def new 
@@ -23,6 +23,28 @@ class CourseAssignmentsController < ApplicationController
             redirect_to :root
         else
             render :new
+        end
+    end
+
+    def edit
+        @course = Course.find(params[:course_id])
+        @assignments = Assignment.all
+    end
+
+    def update
+        @course = Course.find(params[:course_id])
+        if @course_assignment.update(params.require(:course_assignment).permit(:due_date, :assignment_id, :is_active))
+            redirect_to course_course_assignment_path(@course, @course_assignment)
+        else
+            render :edit
+        end
+    end
+
+    def destroy
+        if @course_assignment.destroy
+            redirect_to @course_assignment.course
+        else
+            redirect_to @course_assignment
         end
     end
 
