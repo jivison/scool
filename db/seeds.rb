@@ -27,8 +27,6 @@ Course.delete_all
 Assignment.delete_all
 
 
-
-
 super_user = User.create(
   first_name: "ian",
   last_name: "mckinnon",

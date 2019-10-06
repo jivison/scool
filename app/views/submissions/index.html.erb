@@ -21,7 +21,7 @@
                 <h4><%= submission.marker.full_name %> gave this assignment
                     <%= submission.score %> / <%= submission.course_assignment.maximum_score %>
                     (<%= submission.grade %>%)
-                    <%= link_to 'Change', edit_course_course_assignment_submission_path(@course_assignment.course, @course_assignment, submission) %>
+                    <%= link_to 'Change', course_course_assignment_submission_edit_grade_path(submission.course, submission.course_assignment, submission) %>
                 </h4>
                 <p> Feedback: <br />"<%= submission.feedback %>"</p>
             </div>
