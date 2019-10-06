@@ -17,27 +17,51 @@
 @import "semantic-ui"
 
 // Colors
+$body-blue: #e0f0ff
 $bg-blue: #e8f4ff
 $card-container: #bddfff
-$scool-dark-blue: #5385ED
-$scool-blue: #58B0FF
-$scool-light-blue: #46BEE8
-$scool-lightest-blue: #40F5FF
+$calendar-container: #8fc9ff
 
 // Site body
 body
+  background-color: $body-blue
+  text-align: center
+  min-height: 100vh
+
+.content-container
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  box-sizing: border-box
+  width: 75%
+  padding: 3em
   background-color: $bg-blue
 
+// Content Cards
+.card
+  flex-direction: column
+  background-color: $card-container
+  box-shadow: none
+  box-sizing: border-box
+  border-radius: 0.5em
+  padding: 0.5em
+
+.card-header
+  text-align: left
+  padding: 1em
+
+.card-content-box
+  background-color: $calendar-container
+  border-radius: 0.5em
+  padding: 0.5em
+
 // Calendar
-.calendar
-  .card
-    background-color: $card-container
-    box-shadow: #000000
-  .calendar-box
-    background-color: $card-container
-  .day
-    background-color: $scool-lightest-blue
-    padding: 0.125em
+.calendar-day
+  justify-content: center
+  background-color: white
+  box-sizing: border-box
+  width: 4em
+  height: 6em
 
 // Random
 ol, ul
