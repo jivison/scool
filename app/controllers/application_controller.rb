@@ -46,6 +46,6 @@ class ApplicationController < ActionController::Base
 
     private
     def authenticate_user!
-        redirect_to "/login" unless user_signed_in?
+        redirect_to "/login" unless user_signed_in? || ["/login", "/sign_up", "/sessions/new", "/sessions"].include?(request.path) 
     end
 end

@@ -32,9 +32,9 @@
             </span>
             <% if user_signed_in?%>
             |
-            <%= link_to 'Sign Out', '', method: :delete %>
+            <%= link_to 'Sign Out', session_path(session), method: :delete %>
             <% else %>
-            <%= link_to 'Sign In', '' %>
+            <%= link_to 'Sign In', new_session_path %>
             |
             <% end %>
           </div>
