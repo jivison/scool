@@ -43,7 +43,7 @@ NUM_COURSES.times do
   description = Faker::Quote.famous_last_words
   start_date = Faker::Date.between(from: 30.days.ago, to: Date.today)
   end_date = Faker::Date.forward(days: 90) 
-  Course.create(
+  course = Course.create(
     name: name,
     description: description,
     status:  ["active", "inactive"].shuffle.first,
@@ -51,6 +51,7 @@ NUM_COURSES.times do
     start_date: start_date,
     end_date: end_date
   )
+
 end
 
 courses = Course.all
@@ -88,20 +89,6 @@ end
 
 assignments = Assignment.all
 
-
-NUM_COURSEASSIGNMENTS.times do
-  assign_date = Faker::Date.between(from: 30.days.ago, to: Date.today)
-  due_date = Faker::Date.forward(days: 90) 
-  CourseAssignment.create(
-    assign_date: assign_date,
-    due_date: due_date,
-    is_active: [true, false].sample,
-    assignment_id: Assignment.all.sample.id,
-    course_id: Course.all.sample.id,
-    course_role_assigner_id: CourseRole.where(role: "instructor").sample.id
-  )
-end
-
 course_assignments = CourseAssignment.all
 
 NUM_COURSEBLOCKS.times do |index|
@@ -130,6 +117,22 @@ NUM_SUBMISSIONS.times do
 end
 
 submissions = Submission.all
+
+courses.each do |course|
+  NUM_COURSEASSIGNMENTS.times do
+    assign_date = Faker::Date.between(from: 30.days.ago, to: Date.today)
+    due_date = Faker::Date.between(from: Date.today, to: 30.days.from_now)
+    CourseAssignment.create(
+      assign_date: assign_date,
+      due_date: due_date,
+      is_active: [true, false].sample,
+      assignment_id: Assignment.all.sample.id,
+      course_id: course.id,
+      course_role_assigner_id: CourseRole.where(role: "instructor").sample.id
+    )
+  end
+end
+
 
 
 NUM_ATTENDANCES.times do

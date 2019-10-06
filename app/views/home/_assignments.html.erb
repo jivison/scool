@@ -1,14 +1,14 @@
 <div class="assignments">
-    <%= @assignments[0..3].map do |assignment| %>
+    <h2>Assignments</h2>
+    <% @assignments[0..3].each do |assignment| %>
         <div class="assignment-card" onClick="() => {window.location.href = '/course_assignments/<%= assignment.id %>'}">
-            <h2><%= assignment.name %></h2>
+            <h2><%= assignment.assignment.name %></h2>
             <h3><%= assignment.course.name %></h3>
             <h3>
-
                 <% if assignment.due_date > Time.now %>
-                    <p>Due in <%#= distance_of_time_in_words(Time.now, assignment.due_date) </p>
+                    <p>Due in <%= assignment.due_date %> </p>
                 <% else %>
-                    <p>Due <%#= distance_of_time_in_words(Time.now, assignment.due_date) %> ago</p>
+                    <p>Due <%= assignment.due_date %> ago</p>
                 <% end %>
             </h3>
         </div>
