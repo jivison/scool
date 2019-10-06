@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'home/index'
 
   resources :assignments
-  
+
   resources :courses do
     resources :course_assignments do
       resources :submissions do
@@ -23,10 +23,11 @@ Rails.application.routes.draw do
   end
 
   resources :assignments
-  
+
   resources :sessions, only: [:create, :destroy, :new]
 
   get "login", to: "sessions#new"
   get "sign_in", to: "sessions#new"
 
 end
+

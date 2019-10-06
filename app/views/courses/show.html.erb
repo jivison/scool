@@ -1,0 +1,17 @@
+<div class="ui card">
+  <div class="content">
+    <div class="header"><%=@course.name%></div>
+    <div class="meta">Course Type:<%=@course.type%></div>
+    <div class="meta">Start Date:<%=@course.start_date%></div>
+    <div class="meta">End Date:<%=@course.end_date%></div>
+    <div class="meta">Course Status:<%=@course.status%></div>
+    <div class="meta">
+    Instructors:
+    <%=@course.instructors.each do |instructors|%></div>
+    <li><%= instructors%></li>
+    <%end%%>
+    <div class="description">
+      <p><%=@course.description%></p>
+    </div>
+  </div>
+</div>
