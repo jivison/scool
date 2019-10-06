@@ -4,11 +4,27 @@ class Submission < ApplicationRecord
   validates(:submission_date, presence: true)
 
   def submitter
-    User.find(self.course_role_submitter_id)
+    CourseRole.find(self.course_role_submitter_id).user
   end
 
   def marker
-    User.find(self.course_role_marker_id)
+    CourseRole.find(self.course_role_marker_id).user
+  end
+
+  def grade
+    if self.course_assignment.maximum_score == 1
+      self.score == 1 ? "pass" : "fail"
+    else
+      ((self.score.to_f / self.course_assignment.maximum_score.to_f) * 100).round(2)
+    end
+  end
+
+  def course
+    self.course_assignment.course
+  end
+
+  def max_score
+    self.course_assignment.maximum_score
   end
 
 end

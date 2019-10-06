@@ -11,16 +11,17 @@
 </head>
 <body>
 
+    <div class="app-header">
+      <%= render '/layouts/navbar' %>
+    </div>
 
+    <div class='free-column'></div>
 
-<div class='free-column'></div>
+    <div class='content-container'>
+      <%= yield %>
+    </div>
 
-<div class='content-container'>
-  <%= yield %>
-</div>
-
-<div class='free-column'></div>
-
+    <div class='free-column'></div>
 </body>
 </html>
 
