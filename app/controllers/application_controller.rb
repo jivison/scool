@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::Base
+    def import
+        User.import(params[:file])
+    end
+
     def current_user
         User.find_by(session[:user_id])
     end
