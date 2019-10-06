@@ -11,6 +11,7 @@
                     <p>Due <%= assignment.due_date %> ago</p>
                 <% end %>
             </h3>
+            <%= link_to 'View details...', course_course_assignment_path(assignment.course, assignment) %>
         <% end %>
     </div>
 
@@ -26,6 +27,7 @@
                     <p>Due <%= assignment.due_date %> ago</p>
                 <% end %>
             </h3>
+            <%= link_to 'View details...', course_course_assignment_path(assignment.course, assignment) %>
         <% end %>
     </div>
 
@@ -42,6 +44,7 @@
                     <p>Due <%= assignment.due_date %> ago</p>
                 <% end %>
             </h3>
+            <%= link_to 'View details...', course_course_assignment_path(assignment.course, assignment) %>
         <% end %>
     </div>
 

@@ -1,5 +1,7 @@
 <article class="course-assignment-show">
-    <h1><%= @course_assignment.assignment.name %></h1>
+    <h1><%= link_to @course_assignment.course.name, course_path(@course_assignment.course.name) %></h1>
+
+    <h2><%= @course_assignment.assignment.name %></h1>
     <p><%= @course_assignment.assignment.description %></p>
 
     <p>Assigned <%= distance_of_time_in_words(Time.now, @course_assignment.assign_date) %> ago (<%= @course_assignment.assign_date.strftime('%H:%M %a, %d %b %Y') %>)</p>
