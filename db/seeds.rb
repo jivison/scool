@@ -17,14 +17,15 @@ NUM_ATTENDANCES = 40
 
 PASSWORD = "supersecret"
 
-CourseAssignment.delete_all
+Attendance.delete_all
 CourseBlock.delete_all
+CourseAssignment.delete_all
 CourseRole.delete_all
 User.delete_all
 Course.delete_all
 Assignment.delete_all
 Submission.delete_all
-Attendance.delete_all
+
 
 
 
@@ -106,9 +107,10 @@ course_assignments = CourseAssignment.all
 NUM_COURSEBLOCKS.times do |index|
   
   CourseBlock.create(
+    course_id: Course.all.sample.id,
     date: Time.now + index.day,
     course_block_type: ["Morning", "Afternoon", "Evening"].shuffle.first,
-    course_role_id: CourseRole.all.sample.id
+    course_role_id: CourseRole.where(role: "instructor").sample.id
   )
 end
 
@@ -116,9 +118,11 @@ course_blocks = CourseBlock.all
 
 NUM_SUBMISSIONS.times do
   submission_date = Faker::Date.forward(days: 90) 
+  feedback = Faker::Quote.matz
   Submission.create(
     grade: ["A", "B", "C", "D", "E", "F"].shuffle.first,
     submission_date: submission_date,
+    feedback: feedback,
     course_assignment_id: CourseAssignment.all.sample.id,
     course_role_submitter_id: CourseRole.where(role: "student").sample.id,
     course_role_marker_id: CourseRole.where(role: "instructor").sample.id
@@ -130,7 +134,7 @@ submissions = Submission.all
 
 NUM_ATTENDANCES.times do
   Attendance.create(
-    present:[true, false].shuffle.first,
+    is_present:[true, false].shuffle.first,
     course_block_id: CourseBlock.all.sample.id,
     course_role_id: CourseRole.where(role: "instructor").sample.id
 

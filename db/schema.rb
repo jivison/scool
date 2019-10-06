@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_06_013920) do
+ActiveRecord::Schema.define(version: 2019_10_06_031408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2019_10_06_013920) do
   end
 
   create_table "attendances", force: :cascade do |t|
-    t.boolean "present"
+    t.boolean "is_present"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "course_role_id", null: false
