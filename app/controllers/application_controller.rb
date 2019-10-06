@@ -20,8 +20,12 @@ class ApplicationController < ActionController::Base
 
     helper_method :user_signed_in?
 
-    def is_marked?(course_assignment)
-        course_assignment.submissions.find_by(course_role_submitter_id: current_user.id).present?
+    def is_marked?(course_assignment = nil, submission: nil)
+        if submission
+            !submission.course_role_marker_id.nil?
+        else
+            course_assignment.submissions.find_by(course_role_submitter_id: current_user.id).present?
+        end
     end
 
     helper_method :is_marked?
