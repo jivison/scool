@@ -15,6 +15,111 @@
  */
 
 @import "semantic-ui"
+<<<<<<< HEAD
 
+// Colors
+$body-blue: #e0f0ff
+$bg-blue: #e8f4ff
+$card-container: #bddfff
+$container-color: #8fc9ff
+$content-shadow-color: #505563
+=======
+>>>>>>> 44a91eb5e741a9cb7c2cb84d1806f522f63b6c9b
+
+// Site body
+body
+  display: flex
+  flex-wrap: wrap
+  background-color: $body-blue
+  min-height: 100vh
+
+.app-header
+  width: 100%
+
+.free-column
+  width: 12.5%
+
+.content-container
+  display: flex
+  flex-direction: column
+  flex-wrap: wrap
+  box-sizing: border-box
+  min-width: 75%
+  min-height: 100vh
+  padding: 3em
+  background-color: $bg-blue
+
+// Content Cards
+
+.card-tier
+  display: flex
+  flex-direction: row
+  justify-content: space-around
+  margin: 2.5em
+
+.card
+  display: flex
+  flex-direction: column
+  justify-content: left
+  background-color: $card-container
+  box-shadow: 5px 5px 3px $content-shadow-color
+  box-sizing: border-box
+  border-radius: 0.5em
+  width: 40%
+  padding: 0.5em 0.5em 1em
+  margin: 1em
+  transition: 0.3s
+
+.card:hover
+  transform: translateX(-1px) translateY(-1px) 
+  transition: 0.3s
+  box-shadow: 6px 6px 3.5px $content-shadow-color
+
+
+.card-header
+  padding: 1em
+
+.card-content
+  flex-direction: column
+  background-color: $container-color
+  border-radius: 0.5em
+  padding: 0.5em
+  margin: 0.5em
+
+.content
+  flex-direction: column
+  justify-content: left
+  background-color: white
+  box-sizing: border-box
+  border-radius: 0.1em
+  padding: 1em
+
+// Calendar Cards
+
+.schedule-card
+  @extend .card
+  min-width: 90%
+
+.schedule-day-container
+  display: flex
+  flex-direction: column
+  background-color: white
+  box-sizing: border-box
+  border-radius: 0.1em
+  width: 8em
+  height: 6em
+
+// Reaching into simple_calendar source to custom, tr, td, table.table.table-striped
+tr
+  text-align: center
+
+.calendar-heading
+  display: none
+
+// Random
 ol, ul
+<<<<<<< HEAD
+  list-style: none
+=======
     list-style: none
+>>>>>>> 44a91eb5e741a9cb7c2cb84d1806f522f63b6c9b
