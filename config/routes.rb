@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root to: "home#index"
   get 'home/index'
 
+  resources :assignments
+  
   resources :courses do
     resources :course_assignments
   end
