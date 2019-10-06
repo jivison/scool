@@ -4,9 +4,19 @@
     <h2><%= @course_assignment.assignment.name %></h2>
     <p><%= @course_assignment.assignment.description %></p>
 
+    <h3>Marked out of <%= @course_assignment.maximum_score %></h3>
+
     <% @submissions.each do |submission| %>
-        <%= submission.course_assignment %>
+        <div class="submission">
+            <% if submission.respond_to? :submission_url %>
+                <a href=<%= submission.submission_url %>><%= get_host_without_www(submission.submission_url) %></a>
+            <% end %>
+            <p>
+                Submitted by <%= submission.submitter.full_name %> on 
+                <%= submission.submission_date.strftime('%H:%M %a, %d %b %Y') %>
+            </p>
+        </div>
     <% end %>
 
-    
+
 </article>

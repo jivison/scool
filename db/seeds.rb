@@ -17,6 +17,7 @@ NUM_ATTENDANCES = 40
 
 PASSWORD = "supersecret"
 
+Submission.delete_all
 Attendance.delete_all
 CourseBlock.delete_all
 CourseAssignment.delete_all
@@ -24,7 +25,6 @@ CourseRole.delete_all
 User.delete_all
 Course.delete_all
 Assignment.delete_all
-Submission.delete_all
 
 
 
@@ -115,7 +115,8 @@ courses.each do |course|
       is_active: [true, false].sample,
       assignment_id: Assignment.all.sample.id,
       course_id: course.id,
-      course_role_assigner_id: CourseRole.where(role: "instructor").sample.id
+      course_role_assigner_id: CourseRole.where(role: "instructor").sample.id,
+      maximum_score: rand(10..100)
     )
   end
 end
@@ -136,7 +137,7 @@ course_assignments.each do |ca|
     submission_date = Faker::Date.between(from: 2.days.ago, to: DateTime.now) 
     feedback = Faker::Quote.matz
     Submission.create(
-      grade: ["A", "B", "C", "D", "E", "F"].shuffle.first,
+      score: rand(0..ca.maximum_score),
       submission_date: submission_date,
       feedback: feedback,
       course_assignment_id: ca.id,
