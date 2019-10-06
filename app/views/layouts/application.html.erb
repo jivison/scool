@@ -28,7 +28,7 @@
           </div>
         <div class='right menu'>
           <div class='item'>
-            <span>Hi, <%=link_to "#{current_user.full_name}", '/'%>!
+            <span>Hi, <%=link_to "#{current_user&.full_name}", '/'%>!
             </span>
             <% if user_signed_in?%>
             |
