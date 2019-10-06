@@ -8,6 +8,14 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}".strip
   end
 
+  def current_role
+    self.is_admin? ? "admin" : current_course_role.role
+  end
+
+  def current_course_role
+    self.is_admin? ? CourseRole.new(course: Course.all.sample, user: self, ) : self.course_roles.where(is_archived: false).first
+  end
+
   def self.import_from_CSV(filepath)
     data = CSV.read(filepath, headers: true)
     data.each do |row|

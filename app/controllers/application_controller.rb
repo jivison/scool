@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+
     def current_user
         User.find_by(id: session[:user_id])
     end
@@ -22,5 +23,14 @@ class ApplicationController < ActionController::Base
     end
 
     helper_method :is_marked?
+
+    def get_host_without_www(url)
+        uri = URI.parse(url)
+        uri = URI.parse("http://#{url}") if uri.scheme.nil?
+        host = uri.host.downcase
+        host.start_with?('www.') ? host[4..-1] : host
+    end
+
+    helper_method :get_host_without_www
 
 end
