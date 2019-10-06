@@ -1,22 +1,48 @@
 <article class="show-course-assignment">
     <div class="pending-assignments">
         <h1>Pending Assignments</h1>
-        <%= @course_assignments.pending.map do |assignment| %>
-            <%= render 'assignment_card' %>
+        <% CourseAssignment.pending.where(course_id: @course.id).each do |assignment| %>
+            <h2>Assignment: <%= assignment.assignment.name %></h2>
+            <h3>Course: <%= assignment.course.name %></h3>
+            <h3>
+                <% if assignment.due_date > Time.now %>
+                    <p>Due in <%= distance_of_time_in_words(Time.now, assignment.due_date) %> </p>
+                <% else %>
+                    <p>Due <%= assignment.due_date %> ago</p>
+                <% end %>
+            </h3>
         <% end %>
     </div>
 
     <div class="upcoming-assignments">
         <h1>Upcoming Assignments</h1>
-        <%= @course_assignments.upcoming.map do |assignment| %>
-            <%= render 'assignment_card' %>
+        <% CourseAssignment.upcoming.where(course_id: @course.id)&.each do |assignment| %>
+            <h2>Assignment: <%= assignment.assignment.name %></h2>
+            <h3>Course: <%= assignment.course.name %></h3>
+            <h3>
+                <% if assignment.due_date > Time.now %>
+                    <p>Due in <%= distance_of_time_in_words(Time.now, assignment.due_date) %> </p>
+                <% else %>
+                    <p>Due <%= assignment.due_date %> ago</p>
+                <% end %>
+            </h3>
         <% end %>
     </div>
 
+
     <div class="past-assignments">
         <h1>Past Assignments</h1>
-        <%= @course_assignments.past.map do |assignment| %>
-            <%= render 'assignment_card' %>
+        <% CourseAssignment.past.where(course_id: @course.id).each do |assignment| %>
+            <h2>Assignment: <%= assignment.assignment.name %></h2>
+            <h3>Course: <%= assignment.course.name %></h3>
+            <h3>
+                <% if assignment.due_date > Time.now %>
+                    <p>Due in <%= distance_of_time_in_words(Time.now, assignment.due_date) %> </p>
+                <% else %>
+                    <p>Due <%= assignment.due_date %> ago</p>
+                <% end %>
+            </h3>
         <% end %>
     </div>
+
 </article>

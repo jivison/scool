@@ -1,10 +1,15 @@
-<div class="assignments" onClick="() => {window.location.href = '/course_assignments/<%= assignment.id %>'}">
-    <%= @assignments[0..3].map do |assignment| %>
-        <div class="assignment-card">
-            <h2><%= assignment.name %></h2>
+<div class="assignments">
+    <h2>Assignments</h2>
+    <% @assignments[0..3].each do |assignment| %>
+        <div class="assignment-card" onClick="() => {window.location.href = '/course_assignments/<%= assignment.id %>'}">
+            <h2><%= assignment.assignment.name %></h2>
             <h3><%= assignment.course.name %></h3>
             <h3>
-                <%= assignment.due_date > Time.now ? 'Due in <%= distance_of_time_in_words(Time.now, assignment.due_date)' : "Due <%= distance_of_time_in_words(Time.now, assignment.due_date) %> ago"%>
+                <% if assignment.due_date > Time.now %>
+                    <p>Due in <%= assignment.due_date %> </p>
+                <% else %>
+                    <p>Due <%= assignment.due_date %> ago</p>
+                <% end %>
             </h3>
         </div>
     <% end %>
