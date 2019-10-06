@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
 
+    before_action :authenticate_user!
+
     def current_user
         User.find_by(id: session[:user_id])
     end
@@ -33,4 +35,17 @@ class ApplicationController < ActionController::Base
 
     helper_method :get_host_without_www
 
+    def find_submission(course_role, course_assignment)
+        Submission.find_by(
+            course_role_submitter_id: course_role.id,
+            course_assignment_id: course_assignment.id
+        )
+    end
+
+    helper_method :find_submission
+
+    private
+    def authenticate_user!
+        redirect_to "/login" unless user_signed_in? || ["/login", "/sign_up", "/sessions/new", "/sessions"].include?(request.path) 
+    end
 end
