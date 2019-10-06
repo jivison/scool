@@ -1,10 +1,10 @@
-<div class='card'>
+<div class='schedule-card'>
   <div class='card-header'>
     <h2>Schedule</h2>
   </div>
-  <div class='card-content-box'>
+  <div class='card-content'>
   <%= week_calendar number_of_weeks: 2 do |date| %>
-    <div class='calendar-day'><%= date.day %></div>
+    <div class='schedule-day-container'><%= date.day %></div>
     <%#= @courses = @current_user.course_roles(&:courses).flatten %>
   <% end %>
   </div>

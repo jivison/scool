@@ -1,11 +1,14 @@
 <article class="student-homepage">
 
-    <%#= render 'courses' %>
+  <%#= render 'courses' %>
 
-    <%#= render 'assignments' %>
-
-<div>
+  <%#= render 'assignments' %>
+  <div class='card-tier'>
+    <%= render 'card' %>
+    <%= render 'card' %>
+  </div>
+  <div class='card-tier'>
     <%= render 'calendar' %>
-</div>
+  </div>
 
 </article>

@@ -11,11 +11,14 @@
 
 <body>
 
-<%= render 'navbar'%>
-<div class='content-container'>
-<%= yield %>
+<div class='app-header'>
+  <%= render 'navbar'%>
 </div>
-  
+<div class='free-column'></div>
+<div class='content-container'>
+  <%= yield %>
+</div>
+<div class='free-column'></div>
 </body>
 </html>
 
