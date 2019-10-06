@@ -19,4 +19,12 @@ class Submission < ApplicationRecord
     end
   end
 
+  def course
+    self.course_assignment.course
+  end
+
+  def max_score
+    self.course_assignment.maximum_score
+  end
+
 end

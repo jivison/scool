@@ -1,6 +1,6 @@
 class SubmissionsController < ApplicationController
 
-    before_action :find_submission, only: [:edit]
+    before_action :find_submission, only: [:edit, :update]
 
     def index
         # Only the instructor would be able to see this page
@@ -10,6 +10,15 @@ class SubmissionsController < ApplicationController
     end
 
     def edit
+    end
+
+    def update
+        if @submission.update params.require(:submission).permit(:feedback, :score)
+            # @submission.course_role_marker_id = current_user.current_role
+            redirect_to course_course_assignment_path(@submission.course, @submission.course_assignment)
+        else
+            render :edit
+        end
     end
 
     private
