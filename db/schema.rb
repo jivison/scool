@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_06_031408) do
+ActiveRecord::Schema.define(version: 2019_10_06_183312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2019_10_06_031408) do
     t.bigint "assignment_id", null: false
     t.bigint "course_id", null: false
     t.bigint "course_role_assigner_id"
+    t.integer "maximum_score"
     t.index ["assignment_id"], name: "index_course_assignments_on_assignment_id"
     t.index ["course_id"], name: "index_course_assignments_on_course_id"
   end
@@ -79,7 +80,6 @@ ActiveRecord::Schema.define(version: 2019_10_06_031408) do
   end
 
   create_table "submissions", force: :cascade do |t|
-    t.string "grade"
     t.datetime "submission_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 2019_10_06_031408) do
     t.bigint "course_role_marker_id"
     t.bigint "course_assignment_id", null: false
     t.text "feedback"
+    t.integer "score"
     t.index ["course_assignment_id"], name: "index_submissions_on_course_assignment_id"
   end
 
