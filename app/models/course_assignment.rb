@@ -3,8 +3,7 @@ class CourseAssignment < ApplicationRecord
 
   belongs_to :course
   belongs_to :assignment
-
-
+  
   before_validation :set_default_is_active
 
   def is_marked?

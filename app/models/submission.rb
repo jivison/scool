@@ -1,4 +1,4 @@
 class Submission < ApplicationRecord
-  belongs_to :course_assignments
-  belongs_to :course_roles
+  belongs_to :course_assignment
+  belongs_to :course_role
 end
