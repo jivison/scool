@@ -12,7 +12,7 @@ NUM_COURSES = 35
 NUM_ASSIGNMENTS = 40
 NUM_COURSEASSIGNMENTS = 10
 NUM_COURSEBLOCKS = 40
-NUM_SUBMISSIONS = 40
+NUM_SUBMISSIONS = 5
 NUM_ATTENDANCES = 40
 
 PASSWORD = "supersecret"
@@ -103,19 +103,6 @@ end
 
 course_blocks = CourseBlock.all
 
-NUM_SUBMISSIONS.times do
-  submission_date = Faker::Date.forward(days: 90) 
-  feedback = Faker::Quote.matz
-  Submission.create(
-    grade: ["A", "B", "C", "D", "E", "F"].shuffle.first,
-    submission_date: submission_date,
-    feedback: feedback,
-    course_assignment_id: CourseAssignment.all.sample.id,
-    course_role_submitter_id: CourseRole.where(role: "student").sample.id,
-    course_role_marker_id: CourseRole.where(role: "instructor").sample.id
-  )
-end
-
 submissions = Submission.all
 
 courses.each do |course|
@@ -133,8 +120,6 @@ courses.each do |course|
   end
 end
 
-
-
 NUM_ATTENDANCES.times do
   Attendance.create(
     is_present:[true, false].shuffle.first,
@@ -145,6 +130,22 @@ NUM_ATTENDANCES.times do
 end
 
 attendances = Attendance.all
+
+course_assignments.each do |ca|
+  NUM_SUBMISSIONS.times do
+    submission_date = Faker::Date.between(from: 2.days.ago, to: DateTime.now) 
+    feedback = Faker::Quote.matz
+    Submission.create(
+      grade: ["A", "B", "C", "D", "E", "F"].shuffle.first,
+      submission_date: submission_date,
+      feedback: feedback,
+      course_assignment_id: ca.id,
+      course_role_submitter_id: CourseRole.where(role: "student").sample.id,
+      course_role_marker_id: CourseRole.where(role: "instructor").sample.id
+    )
+  end
+end
+
 
 puts Cowsay.say("Generated #{users.count} users", :stegosaurus)
 puts Cowsay.say("Generated #{courses.count} courses", :frogs)
