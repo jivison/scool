@@ -3,11 +3,7 @@ class CourseAssignment < ApplicationRecord
 
   belongs_to :course
   belongs_to :assignment
-<<<<<<< HEAD
-
-=======
   
->>>>>>> 5011e833bafcaf00b588b5456e7529a773cebb0c
   before_validation :set_default_is_active
 
   def is_marked?
