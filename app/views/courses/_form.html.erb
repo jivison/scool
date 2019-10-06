@@ -1,0 +1,39 @@
+<% if @course.errors.any? %>
+<ul>
+    <% @course.errors.full_messages.each do |msg|%>
+    <li><%= msg%></li>
+    <% end %>
+</ul>
+<% end%>
+<%= form_for @course do |f|%>
+<div class="ui equal width form">
+<div>
+    <%= f.label :name %>
+    <%= f.text_field :name%>
+</div>
+<div>
+    <%= f.label :description %>
+    <%= f.text_area :description%>
+</div>
+<div>
+    <%= f.label :course_type %>
+    <%= f.text_field :course_type%>
+</div>
+<div>
+    <%= f.label :start_date %>
+    <%= f.text_field :start_date%>
+</div>
+<div>
+    <%= f.label :end_date %>
+    <%= f.text_field :end_date%>
+</div>
+<div>
+    <%= f.label :active %><br />
+    <%= f.label :active, "Active", :value => "true"  %>
+    <%= f.radio_button :active, true %>
+    <%= f.label :active, "Inactive", :value => "false" %>
+    <%= f.radio_button :active, false, :checked => true %>
+</div>
+</div>
+<%= f.submit :submit,class:"ui primary button" %>
+<% end%>
