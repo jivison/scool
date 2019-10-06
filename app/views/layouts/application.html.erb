@@ -20,7 +20,6 @@
         '/' %>
         </div>
         <%# we need to create if user signed in  %>
-        <%# if user_signed_in?  hello #{current.user.name} thing later%>
         <div class="container">
         <div class='item'>
             <h3>My Dash Board</h3>
@@ -28,22 +27,36 @@
           </div>
         <div class='right menu'>
           <div class='item'>
-          <%# if user_signed_in? %>
-          <span>Hi, <%#=link_to "#{current_user.name}", edit_user_path(current_user)%>!
-          </span>
-          |
-          <%#= link_to 'Sign Out', '', method: :delete %>
-          <%# else %>
-          <%#= link_to 'Sign In', '' %>
-          |
-          <%# end %>
+            <span>Hi, <%#=link_to "#{current_user.name}", '/'%>!
+            </span>
+            <%if user_signed_in?%>
+            |
+            <%= link_to 'Sign Out', '', method: :delete %>
+            <% else %>
+            <%= link_to 'Sign In', '' %>
+            |
+            <% end %>
           </div>
         </div>
+      <% if !admin_signed_in? %>
 
         <div class='item'><%= link_to image_tag('profile_pic.png', alt: 'profile',style: "width:50px"),
-          '/courses'%>
+          '/'%>
+          <%#we need a route to view all courses%>
         </div>
-      </div>
+
+      <%else%>
+          |
+          <%= link_to 'Management Courses', '' %>
+          |
+          <%= link_to 'Management Users', '' %>
+          <div class='item'><%= link_to image_tag('profile_pic.png', alt: 'profile',style: "width:50px"),
+            '/'%>
+             <%#we need a route to view all courses%>
+          </div>
+      <% end %>
+
+
     </header>
     <div class='container'>
 
