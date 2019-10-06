@@ -14,11 +14,12 @@ NUM_COURSEASSIGNMENTS = 10
 NUM_COURSEBLOCKS = 40
 PASSWORD = "supersecret"
 
-User.delete_all
-Course.delete_all
-Assignment.delete_all
 CourseAssignment.delete_all
 CourseBlock.delete_all
+Course.delete_all
+
+User.delete_all
+Assignment.delete_all
 
 super_user = User.create(
   first_name: "ian",
@@ -88,12 +89,11 @@ course_assignments = CourseAssignment.all
 
 
 
-
 puts Cowsay.say("Generated #{users.count} users", :stegosaurus)
 puts Cowsay.say("Generated #{courses.count} courses", :frogs)
 puts Cowsay.say("Generated #{assignments.count} assignments", :frogs)
 puts Cowsay.say("Generated #{course_assignments.count} course_assignments", :frogs)
-puts Cowsay.say("Generated #{course_blocks.count} course_blocks", :frogs)
+# puts Cowsay.say("Generated #{course_blocks.count} course_blocks", :frogs)
 
 puts "Login with #{super_user.email} and password: #{PASSWORD}"
 
