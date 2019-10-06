@@ -4,4 +4,14 @@ class CourseRole < ApplicationRecord
 
   belongs_to :user
   belongs_to :course
+
+  validates(:role, presence: true)
+
+  before_validation :set_default_is_archived
+
+  private
+
+  def set_default_is_archived
+    self.is_archived ||= false
+  end
 end
