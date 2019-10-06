@@ -142,7 +142,8 @@ course_assignments.each do |ca|
       feedback: feedback,
       course_assignment_id: ca.id,
       course_role_submitter_id: CourseRole.where(role: "student").sample.id,
-      course_role_marker_id: CourseRole.where(role: "instructor").sample.id
+      course_role_marker_id: CourseRole.where(role: "instructor").sample.id,
+      submission_url: ["http://github.com/jivison/s-cool", "http://drive.google.com/u/sanjfsla"].sample
     )
   end
 end
