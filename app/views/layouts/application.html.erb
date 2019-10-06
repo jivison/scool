@@ -8,6 +8,7 @@
 
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_pack_tag 'application' %>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -29,7 +30,7 @@
           <div class='item'>
             <span>Hi, <%#=link_to "#{current_user.name}", '/'%>!
             </span>
-            <%if user_signed_in?%>
+            <% if user_signed_in?%>
             |
             <%= link_to 'Sign Out', '', method: :delete %>
             <% else %>
