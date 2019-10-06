@@ -13,7 +13,7 @@ class User < ApplicationRecord
   end
 
   def current_course_role
-    self.is_admin? ? CourseRole.new(course: Course.all.sample, user: self, ) : self.course_roles.where(is_archived: false).first
+    self.is_admin? ? CourseRole.new(course: Course.all.sample, user: self, role: "admin") : self.course_roles.where(is_archived: false).first
   end
 
   def self.import_from_CSV(filepath)
