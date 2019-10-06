@@ -1,8 +1,12 @@
 <div class='nav-container'>
-  <a href='#' class='home-logo'><img src='https://i.imgur.com/bqkWOxT.jpg'></a>
-  <h1 class='nav-current-view'>where-am-i</h1>
-  <div class='nav-end-items'>
-    <a href='#' class='user-profile'><img src='https://i.imgur.com/bqkWOxT.jpg'></a>
+  <div class='nav-item'>
+    <%= link_to image_tag('logo.png', alt: 'logo', style: "width:50px"), '/' %>
+  </div>
+  <div class='nav-item'>
+    <h1 class='nav-current-view'>Dashboard</h1>
+  </div>
+  <div class='nav-item'>
+    <%= link_to image_tag('profile_pic.png', alt: 'profile', style: "width:50px"), '/'%>
     <a href='#'>Log Out</a>
   </div>
 </div>

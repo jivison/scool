@@ -21,8 +21,9 @@ $bg-blue: #e8f4ff
 $card-container: #bddfff
 $container-color: #8fc9ff
 $content-shadow-color: #505563
+$button-color: #5694c7
 
-// Site body
+// Site skin
 body
   display: flex
   flex-wrap: wrap
@@ -45,13 +46,13 @@ body
   padding: 3em
   background-color: $bg-blue
 
-// Content Cards
 .card-tier
   display: flex
   flex-direction: row
   justify-content: space-around
   margin: 2.5em
 
+// Base Templates
 .card
   display: flex
   flex-direction: column
@@ -63,13 +64,6 @@ body
   width: 40%
   padding: 0.5em 0.5em 1em
   margin: 1em
-  transition: 0.3s
-
-.card:hover
-  transform: translateX(-1px) translateY(-1px) 
-  transition: 0.3s
-  box-shadow: 6px 6px 3.5px $content-shadow-color
-
 
 .card-header
   padding: 1em
@@ -88,10 +82,67 @@ body
   box-sizing: border-box
   border-radius: 0.1em
   padding: 1em
+  margin: 0.5em
+
+// Sign-In
+.login
+  display: flex
+  flex-direction: column
+  justify-content: center
+
+.sign-in-card
+  @extend .card
+
+.sign-in-card-header
+  padding: 1em 0em 0em 1em
+
+.sign-in-card-content
+  @extend .card-content
+  justify-content: center
+
+.sign-in-card-content > form
+  display: flex
+  justify-content: center
+  flex-wrap: wrap
+
+.sign-in-field
+  display: flex
+  flex-direction: column
+  width: 51%
+  margin: 0.8em
+
+input[name=commit]
+  background-color: $button-color
+  flex-direction: column
+  width: 3em
+  box-sizing: border-box
+  box-shadow: 2px 2px $content-shadow-color
+  color: white
+  border: none
+  justify-content: center
+  border-radius: 0.3em
+  transition: 0.1s
+  padding: 0.3em
+  margin: 0.2em
+
+input[type=submit]:hover
+  box-shadow: 1px 1px $content-shadow-color
+  transform: translateX(0.5px) translateY(0.5px)
+
+
+// Member Cards
+.member-card
+  @extend .card
+  transition: 0.3s
+
+.member-card:hover
+  transform: translateX(-1px) translateY(-1px) 
+  transition: 0.3s
+  box-shadow: 6px 6px 3.5px $content-shadow-color
 
 // Calendar Cards
 .schedule-card
-  @extend .card
+  @extend .member-card
   min-width: 90%
 
 .schedule-day-container
@@ -99,7 +150,7 @@ body
   flex-direction: column
   background-color: white
   box-sizing: border-box
-  border-radius: 0.1em
+  border-radius: 0.15em
   width: 8em
   height: 6em
 
@@ -110,6 +161,6 @@ tr
 .calendar-heading
   display: none
 
-// Random
+// Other
 ol, ul
   list-style: none
