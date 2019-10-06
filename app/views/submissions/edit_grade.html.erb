@@ -1,5 +1,5 @@
-<article class="edit-submission">
-    <%= form_for(@submission, url: course_course_assignment_submission_path(@submission.course, @submission.course_assignment, @submission)) do |f| %>
+<article class="edit-submission-grade">
+    <%= form_for(@submission, url: course_course_assignment_submission_update_grade_path(@submission.course, @submission.course_assignment, @submission)) do |f| %>
         <div>
             <%= f.label :score %>
             <%= select :submission, :score, 1..@submission.max_score %>

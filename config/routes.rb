@@ -15,13 +15,19 @@ Rails.application.routes.draw do
 
   resources :courses do
     resources :course_assignments do
-      resources :submissions
-    end
+      resources :submissions do
+        get "edit_grade", as: :edit_grade
+        patch "update_grade", as: :update_grade
+      end
+    end 
   end
 
   resources :assignments
 
   resources :sessions, only: [:create, :destroy, :new]
+
+  get "login", to: "sessions#new"
+  get "sign_in", to: "sessions#new"
 
 end
 
