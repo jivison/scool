@@ -1,0 +1,12 @@
+<article class="submissions-index">
+
+    <h1>Submissions for Course Assignment <%= @course_assignment.id %></h1>
+    <h2><%= @course_assignment.assignment.name %></h2>
+    <p><%= @course_assignment.assignment.description %></p>
+
+    <% @submissions.each do |submission| %>
+        <%= submission.course_assignment %>
+    <% end %>
+
+    
+</article>

@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   resources :assignments
   
   resources :courses do
-    resources :course_assignments
+    resources :course_assignments do
+      resources :submissions
+    end 
   end
 
   resources :sessions, only: [:create, :destroy, :new]
