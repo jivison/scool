@@ -3,7 +3,7 @@
     <div class='ui stackable menu'>
       <%#if you click the logo, it directs to the homepage%>
       <div class='item'>
-        <%= link_to image_tag('logo.png', alt: 'logo', style: "width:50px"), '/' %>
+        <%= link_to image_tag('logo.png', alt: 'logo', style: "width:50px"),'/' %>
       </div>
       <%# we need to create if user signed in  %>
       <%# if user_signed_in?  hello #{current.user.name} thing later%>
@@ -15,8 +15,7 @@
       <div class='right menu'>
         <div class='item'>
         <%# if user_signed_in? %>
-        <span>Hi, <%#=link_to "#{current_user.name}", edit_user_path(current_user)%>!
-        </span>
+          <span>Hi, <%#=link_to "#{current_user.name}", edit_user_path(current_user)%>!</span>
         |
         <%#= link_to 'Sign Out', '', method: :delete %>
         <%# else %>
@@ -25,8 +24,7 @@
         <%# end %>
         </div>
       </div>
-      <div class='item'>
-        <%= link_to image_tag('profile_pic.png', alt: 'profile',style: "width:50px"), '/courses'%>
+      <div class='item'><%= link_to image_tag('profile_pic.png', alt: 'profile',style: "width:50px"), '/courses'%>
       </div>
     </div>
   </header>

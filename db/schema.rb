@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_05_220400) do
+ActiveRecord::Schema.define(version: 2019_10_06_013920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 2019_10_05_220400) do
   end
 
   create_table "course_assignments", force: :cascade do |t|
-    t.date "assign_date"
-    t.date "due_date"
+    t.datetime "assign_date"
+    t.datetime "due_date"
     t.boolean "is_active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2019_10_05_220400) do
 
   create_table "submissions", force: :cascade do |t|
     t.string "grade"
-    t.date "submission_date"
+    t.datetime "submission_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "course_role_submitter_id"
@@ -98,6 +98,8 @@ ActiveRecord::Schema.define(version: 2019_10_05_220400) do
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "img_url"
+    t.boolean "is_admin"
   end
 
   add_foreign_key "attendances", "course_blocks"

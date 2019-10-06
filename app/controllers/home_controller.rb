@@ -1,16 +1,16 @@
 class HomeController < ApplicationController
     def index
-        @courses = [
-            {title: "test"}
-        ]
+        @courses = [Course.last]
+        @assignments = CourseAssignment.where(course_id: @courses[0].id)
 
         # role = current_user.current_role.type
-        # if role === "student"
+        role = "student"
+        if role === "student"
             render :student_homepage
-        # elsif role === "admin"
-        #     render :admin_homepage
-        # elsif role === "instructor"
-        #     render :instructor_homepage
-        # end
+        elsif role === "admin"
+            render :admin_homepage
+        elsif role === "instructor"
+            render :instructor_homepage
+        end
     end
 end
