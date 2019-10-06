@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
         User.find_by(session[:user_id])
     end
     
+    helper_method :current_user
+    
     def admin_signed_in?
         current_user&.is_admin?
     end
