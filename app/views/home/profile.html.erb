@@ -1,4 +1,40 @@
-@active.
-<% @plural.each do |single| %>
-    <p></p>
-<% end %>
+
+<h1>You want to change your profile setting?</h1>
+<% if @user.errors.any? %>
+    <ul>
+        <% @user.errors.full_messages.each do |msg|%>
+        <li><%=msg%></li>
+        <%end%>
+    </ul>
+<%end%>
+
+<%= form_with model: @user, url:'/', local: true do |f|%>
+    <div class="ui equal width form">\
+    <div>
+        <%=f.label :first_name %>
+        <%=f.text_field :first_name %>
+    </div>
+    <div>
+        <%=f.label :last_name %>
+        <%=f.text_field :last_name %>
+    </div>
+    <div>
+        <%=f.label :email %>
+        <%=f.email_field :email %>
+    </div>
+    <div>
+        <%=f.label :current_password %>
+        <%=f.password_field :current_password %>
+    </div>
+    <div>
+        <%=f.label :password %>
+        <%=f.password_field :password %>
+    </div>
+    <div>
+        <%=f.label :password_confirmation %>
+        <%=f.password_field :password_confirmation %>
+    </div>
+    </div>
+    <%=f.submit "Update Profile"%>
+
+<%end%>

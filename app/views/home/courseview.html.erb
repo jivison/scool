@@ -1,5 +1,5 @@
 <div class="ui card">
-    <% @activeCourses.each do |active_course|%>
+    <% @active_courses.each do |active_course|%>
         <div>
         <h3>Course: <%= @course.name %></h3>
         <h3>Curriculum:<%= @course.description %></h3>
@@ -16,7 +16,7 @@
 </div>
 
 <div class="ui card">
-    <% @inactiveCourse.each do |inactive_course|%>
+    <% @inactive_course.each do |inactive_course|%>
       <div>
         <h3>Course: <%= @course.name %></h3>
         <h3>Curriculum:<%= @course.description %></h3>
