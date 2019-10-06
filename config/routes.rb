@@ -16,8 +16,11 @@ Rails.application.routes.draw do
   resources :courses do
     resources :course_assignments do
       resources :submissions do
-        get "edit_grade", as: :edit_grade
-        patch "update_grade", as: :update_grade
+        get "new_grade"
+        post "create_grade"
+        get "edit_grade"
+        patch "update_grade"
+        delete "destroy_grade"
       end
     end 
   end
