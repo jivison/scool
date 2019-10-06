@@ -1,9 +1,9 @@
 class CourseAssignment < ApplicationRecord
   has_many :submissions, dependent: :destroy
 
-  belongs_to :courses
-  belongs_to :assignments
-  belongs_to :course_roles
+  belongs_to :course
+  belongs_to :assignment
+  belongs_to :course_role
 
   before_validation :set_default_is_active
 

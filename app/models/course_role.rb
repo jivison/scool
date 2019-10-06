@@ -4,6 +4,6 @@ class CourseRole < ApplicationRecord
   has_many :submissions, dependent: :destroy
   has_many :course_assignments, dependent: :nullify
 
-  belongs_to :users
-  belongs_to :courses
+  belongs_to :user
+  belongs_to :course
 end
