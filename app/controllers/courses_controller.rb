@@ -22,9 +22,11 @@ class CoursesController < ApplicationController
   end
 
   def show
-    #@course = Course.find(params[:id])
-    #@course_assignment = Course_Assignment.new
     @course_assignments = @course.course_assignments
+    @instructors = @course.instructors
+    @enrolled = @course.enrolled
+    @markers = @course.markers
+
   end
 
   def edit
@@ -33,15 +35,35 @@ class CoursesController < ApplicationController
   def update
     if @course.update course_params
       redirect_to course_path(@course)
-    else 
+    else
       render:edit
     end
   end
 
   def destroy
-    flash[:notice] = "Course deleted"
+    CourseAssignment.where(course_id: @course.id).each do |ca|
+      ca.submissions.each do |s|
+        s.destroy
+      end
+      ca.destroy
+    end
+
+    
+    CourseRole.where(course_id: @course.id).each do |cr|
+      CourseAssignment.where(course_role_assigner_id: cr.id).each do |ca|
+        ca.destroy
+      end
+
+      Submission.where(course_role_marker_id: cr.id).each do |s|
+        s.destroy
+      end
+      Submission.where(course_role_submitter_id: cr.id).each do |s|
+        s.destroy
+      end
+      cr.destroy
+    end
     @course.destroy
-    redirect_to courses_path
+    redirect_to :root
   end
 
   private

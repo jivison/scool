@@ -27,9 +27,13 @@ Rails.application.routes.draw do
     post "add_attendance"
   end
 
+  resources :users
+
   resources :assignments
 
   resources :sessions, only: [:create, :destroy, :new]
+
+  resources :users, only: [:new, :create, :edit, :update, :destroy]
 
   get "login", to: "sessions#new"
   get "sign_in", to: "sessions#new"

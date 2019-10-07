@@ -9,7 +9,7 @@ class User < ApplicationRecord
   end
 
   def current_role
-    self.is_admin? ? "admin" : current_course_role.role
+    self.is_admin ? "admin" : current_course_role&.role
   end
 
   def current_course_role
