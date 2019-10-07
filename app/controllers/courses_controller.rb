@@ -5,6 +5,10 @@ class CoursesController < ApplicationController
     @course_roles = @course.course_roles
   end
 
+  def archive
+    @courses = Course.all
+  end
+
   private
 
   def find_course
