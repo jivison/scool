@@ -28,6 +28,15 @@ Rails.application.routes.draw do
 
   resources :users
 
+  get '/users/:id/courses/', {to: "courses#index"}
+  get '/users/:id/assignments/', {to: "due_assignments#index"}
+
+  get '/admin/archive'
+  get '/admin/users'
+  get '/admin/courses'
+
+  get '/users/id:/assignments/', {to: "submitted_assignments#index"}
+
   resources :assignments
 
   resources :sessions, only: [:create, :destroy, :new]
@@ -38,4 +47,6 @@ Rails.application.routes.draw do
   get "sign_in", to: "sessions#new"
 
 end
+
+
 

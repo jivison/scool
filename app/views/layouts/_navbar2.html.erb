@@ -9,25 +9,41 @@
     <div class='item'>
       <div>
           <%if user_signed_in? %>
+
             <span>Hi, <%=link_to "#{current_user&.full_name}", '/'%>!</span>
+            <% if current_user.current_role =="student" %>
+              |
+              <%= link_to 'Courses', "/users/#{current_user.id}/courses"  %>
+              |
+              <%= link_to 'Assignments', "/users/#{current_user.id}/due_assignments" %>
+            <% elsif current_user.current_role == "instructor" %>
+              |
+            <%= link_to 'Courses', "/users/#{current_user.id}/courses"   %>
+              |
+            <%= link_to 'Assignments', "/users/#{current_user.id}/submitted_assignments" %>
+            <% elsif current_user.current_role == "admin" %>
+              <%= link_to 'Courses', admin_courses_path %>
+              |
+              <%= link_to 'Users', admin_users_path %>
+              |
+              <%= link_to 'Archive', admin_archive_path %>
+            <% end %>
+
+
             |
-            <%= link_to 'Sign Out', session_path(session), method: :delete %>
+            <%= link_to 'Sign Out', session_path(current_user.id), method: :delete %>
           <% else %>
             <%= link_to 'Sign In', new_session_path %>
+            |
           <% end %>
         </div>
       </div>
       <% if !admin_signed_in? && user_signed_in? %>
-          |
           <div class='item'>
             <%= link_to image_tag('profile_pic.png', alt: 'profile', style: "width:50px"), '/'%>
             <%#we need a route to view all courses%>
           </div>
           <% elsif admin_signed_in? %>
-            |
-            <%= link_to 'Management Courses', '' %>
-            |
-            <%= link_to 'Management Users', '' %>
           <div class='item'>
             <%= link_to image_tag('profile_pic.png', alt: 'profile', style: "width:50px"), '/'%>
             <%#we need a route to view all courses%>
