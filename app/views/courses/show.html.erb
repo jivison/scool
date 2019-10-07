@@ -1,39 +1,42 @@
-<div class="ui card">
-  <div class="content">
-    <div class="header"><%=@course.name%></div>
-    <div class="meta">Course Type:<%=@course.type%></div>
-    <div class="meta">Start Date:<%=@course.start_date%></div>
-    <div class="meta">End Date:<%=@course.end_date%></div>
-    <div class="meta">Course Status:<%=@course.status%></div>
-    <div class="meta">
+    <p><%=@course.name%></p>
+    <p>Course Type:<%=@course.type%></p>
+    <p>Start Date:<%=@course.start_date%></p>
+    <p>End Date:<%=@course.end_date%></p>
+    <p>Course Status:<%=@course.status%></p>
+    <p>
     Instructors:
-    <%=@course.instructors.each do |instructors|%></div>
+    <%=@course.instructors.each do |instructors|%></p>
     <li><%= instructors%></li>
     <%end%%>
-    <div class="description">
-      <p><%=@course.description%></p>
+    <p class="description">
+    <p><%=@course.description%></p>
+    </p>
+  <%if admin_signed_in?%>
+    <%= link_to 'Edit', edit_course_path(@course) %>
+    <%= link_to 'Delete', course_path(@course), method: :delete, data: {confirm: "Are you sure?"} %>
+
+    <%@assignments[0..2].each do |assignment|%>
+    <li>
+    <p>
+      <%=assignment.name%></br>
+      <%= link_to(
+        assignment.name, course_assignment_path(@course, assignment)
+      )%>
+    </p>
+     </li>
+   <%end%>
+   <%=link_to "View More", course_course_assignments_path(@course)%>
+
+<div>
+  <% @users.each do |user| %>
+    <div>
+        <%= user.first_name %><br/>
+        <%= user.email %><br/>
+        <%= link_to user.first_name, user_path(user)%>
     </div>
+    <%end%>
   </div>
-</div>
 
-<p><%= @course.name %></p>
-<p>Instructors:</p>
-  <% @course_roles.each do |course_role| %>
-  <% if course_role.role == "instructor" %>
-    <div>
-      <%= course_role.user.full_name %>
-      <hr>
-    </div>
-  <% end %>
-<% end %>
 
-<p>Students:</p>
-<% @course_roles.each do |course_role| %>
-  <% if course_role.role == "student" %> 
-    <div>
-      <%= course_role.user.full_name %>
-      <hr>
-    </div>
-    <% end %>
-<% end %>
 
+<%end%>

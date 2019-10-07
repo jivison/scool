@@ -17,3 +17,4 @@
 //= require semantic-ui/modules/tab.js 
 //= require semantic-ui/modules/transition.js 
 //= require semantic-ui/modules/video.js 
+//= require bootstrap-datepicker
