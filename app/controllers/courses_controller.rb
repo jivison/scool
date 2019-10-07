@@ -66,6 +66,10 @@ class CoursesController < ApplicationController
     redirect_to :root
   end
 
+  def archive
+    @courses = Course.all
+  end
+
   private
 
   def course_params
