@@ -8,6 +8,14 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}".strip
   end
 
+  def archived_courses
+    self.course_roles.map(&:course).select { |course| course.is_archived == true }
+  end
+
+  def active_courses
+    self.course_roles.map(&:course).select { |course| course.is_archived == false }
+  end
+
   def current_role
     self.is_admin ? "admin" : current_course_role&.role
   end

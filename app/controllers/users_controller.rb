@@ -35,6 +35,8 @@ class UsersController < ApplicationController
 
   def courses
     @user = User.find(params[:id])
+    @active_courses = @user.active_courses
+    @archived_courses = @user.archived_courses
   end
 
   private

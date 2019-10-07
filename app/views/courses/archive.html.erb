@@ -1,17 +1,5 @@
-<p>Archive page</p>
 
-
-<p>Current:</p>
-<% @courses.each do |course| %>
-  <% if course.is_archived? == false %> 
-    <div>
-      <%= course.name %>
-      <hr>
-    </div>
-    <% end %>
-<% end %>
-
-<p>Archived:</p>
+<p>Archived Courses:</p>
   <% @courses.each do |course| %>
   <% if course.is_archived? == true %>
     <div>
