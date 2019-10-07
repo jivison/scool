@@ -13,9 +13,11 @@ NUM_COURSEASSIGNMENTS = 10
 NUM_COURSEBLOCKS = 40
 NUM_SUBMISSIONS = 5
 NUM_ATTENDANCES = 40
+NUM_PROGRAMS = 10
 
 PASSWORD = "supersecret"
 
+Program.delete_all
 Submission.delete_all
 Attendance.delete_all
 CourseBlock.delete_all
@@ -35,6 +37,15 @@ super_user = User.create(
   is_admin: true
 )
 
+NUM_PROGRAMS.times do
+  name = Faker::Book.title
+  program = Program.create(
+    name: name
+  )
+end
+
+programs = Program.all
+
 NUM_COURSES.times do
   name = Faker::Book.title
   description = Faker::Quote.famous_last_words
@@ -43,10 +54,11 @@ NUM_COURSES.times do
   course = Course.create(
     name: name,
     description: description,
-    status:  ["active", "inactive"].shuffle.first,
-    course_type: ["Computer", "Business", "Art"].shuffle.first,
+    status:  ["active", "inactive"].sample,
     start_date: start_date,
-    end_date: end_date
+    end_date: end_date,
+    course_type: Program.all.sample.id,
+    is_archived: [true, false].sample,
   )
 
 end

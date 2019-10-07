@@ -195,7 +195,6 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    selectize-rails (0.12.6)
     semantic-ui-rails (0.18.0)
       autoprefixer-rails
       less-rails
@@ -251,7 +250,6 @@ DEPENDENCIES
   rails-controller-testing
   rspec-rails
   sass-rails (~> 5)
-  selectize-rails
   semantic-ui-rails
   semantic-ui-sass!
   simple_calendar (~> 2.0)
