@@ -8,7 +8,7 @@
 <% end %>
 
 <% if admin_signed_in? %>
-  <%= form_with model: @user local: true do |f| %>
+  <%= form_with model: @user, local: true do |f| %>
     <div class="ui equal width form">
     <div>
         <%= f.label :img_url %>

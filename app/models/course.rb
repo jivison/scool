@@ -7,8 +7,19 @@ class Course < ApplicationRecord
 
   validates(:name, presence: true)
 
-  private
+  def instructors
+    self.course_roles.where(role: "instructor")
+  end
 
+  def enrolled
+    self.course_roles.where(role: "student")
+  end
+
+  def markers
+    self.course_assignments.map(&:submissions)
+  end
+
+  private
   def set_default_status
     self.status ||= "new"
   end
