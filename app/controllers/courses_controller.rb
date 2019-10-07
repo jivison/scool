@@ -53,4 +53,16 @@ class CoursesController < ApplicationController
   def find_course
     @course = Course.find params[:id]
   end
+
+  def add_attendance
+    params.each do |key, value|
+      if key.include? "data-"
+        tmp, block, user = key.split("-")
+        course_role = CourseRole.find(user)
+        block = CourseBlock.find_by(date: params[:date], course_block_type: block)
+        attendance = Attendance.find_by(course_block_id: course_block.id, block_id: block.id)
+        attendance.is_present = value
+        attendance.save
+      end
+  end
 end

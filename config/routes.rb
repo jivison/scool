@@ -24,6 +24,7 @@ Rails.application.routes.draw do
         delete "destroy_grade"
       end
     end 
+    post "add_attendance"
   end
 
   resources :assignments
