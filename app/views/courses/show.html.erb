@@ -3,9 +3,7 @@
     <p>Start Date:<%= @course.start_date %></p>
     <p>End Date:<%= @course.end_date %></p>
     <p>Course Status:<%= @course.status %></p>
-    <p>
-    Instructors:
-    <% @course.instructors.each do |instructor| %></p>
+    <p>Instructors: <% @course.instructors.each do |instructor| %></p>
     <li><%= instructor.full_name%></li>
     <% end %>
 
