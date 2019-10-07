@@ -9,6 +9,7 @@ class HomeController < ApplicationController
             render :student_homepage
         elsif role === "admin"
             @courses = Course.all
+            @users = User.all
             render :admin_homepage
         elsif role === "instructor"
             render :instructor_homepage
