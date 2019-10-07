@@ -1,0 +1,23 @@
+<h1>Courses#show</h1>
+<p>xFind me in app/views/courses/show.html.erb</p>
+
+<p><%= @course.name %></p>
+<p>Instructors:</p>
+  <% @course_roles.each do |course_role| %>
+  <% if course_role.role == "instructor" %>
+    <div>
+      <%= course_role.user.full_name %>
+      <hr>
+    </div>
+  <% end %>
+<% end %>
+
+<p>Students:</p>
+<% @course_roles.each do |course_role| %>
+  <% if course_role.role == "student" %> 
+    <div>
+      <%= course_role.user.full_name %>
+      <hr>
+    </div>
+    <% end %>
+<% end %>
