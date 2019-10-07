@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'courses/show'
   get 'courses/archive'
 
+
   get 'users/:id/courses', {to: 'users#courses'}
   
   root to: "home#index"
@@ -23,6 +24,12 @@ Rails.application.routes.draw do
 
   resources :users
 
+  get '/users/:id/courses/', {to: "courses#index"}
+  get '/users/:id/assignments/', {to: "due_assignments#index"}
+
+  get '/users/:id/submitted_assignments/', {to: "users#submitted_assignments"}
+  get '/users/:id/due_assignments/', {to: "users#due_assignments"}
+
   resources :assignments
 
   resources :sessions, only: [:create, :destroy, :new]
@@ -32,5 +39,11 @@ Rails.application.routes.draw do
   get "login", to: "sessions#new"
   get "sign_in", to: "sessions#new"
 
+  get "admin/courses"
+  get "admin/users"
+  get "admin/archive"
+
 end
+
+
 

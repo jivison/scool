@@ -32,12 +32,27 @@ class UsersController < ApplicationController
 
   def destroy
   end
-
+  
   def courses
     @user = User.find(params[:id])
     @active_courses = @user.active_courses
     @archived_courses = @user.archived_courses
   end
+    
+  def due_assignments
+    # For students only
+    @assignments = current_user.current_course_role.course.course_assignments.pending
+  end
+
+  def submitted_assignments
+    # For instructors only
+    @assignments = current_user.course_roles.where(role: "instructor").map(&:course).map { |course|
+      course.course_assignments.select { |ca|
+        ca.submissions.inject(false) { |acc, submission|
+          submission.course_role_marker_id.nil? && !acc ? true : acc
+          }
+        }
+      }.flatten
 
   private
 

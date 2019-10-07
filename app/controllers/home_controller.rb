@@ -3,8 +3,8 @@ class HomeController < ApplicationController
         @courses = current_user.course_roles.map(&:course)
         @assignments = @courses.map(&:course_assignments).flatten
 
-        # role = current_user.current_role.type
-        role = "admin"
+     role = current_user.current_role
+
         if role === "student"
             render :student_homepage
         elsif role === "admin"

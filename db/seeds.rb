@@ -14,7 +14,7 @@ NUM_COURSEBLOCKS = 40
 NUM_SUBMISSIONS = 5
 NUM_ATTENDANCES = 40
 
-PASSWORD = "supersecret"
+PASSWORD = "codecore"
 
 Submission.delete_all
 Attendance.delete_all
@@ -33,7 +33,6 @@ Assignment.delete_all
   )
 end
 
-
 super_user = User.create(
   first_name: "ian",
   last_name: "mckinnon",
@@ -41,6 +40,24 @@ super_user = User.create(
   status: "active",
   password: PASSWORD,
   is_admin: true
+)
+
+student_user = User.create(
+  first_name: "student",
+  last_name: "mcstudent",
+  email: "student@codecore.ca",
+  status: "active",
+  password: PASSWORD,
+  is_admin: false
+)
+
+instructor_user = User.create(
+  first_name: "instructor",
+  last_name: "mcinstructor",
+  email: "instructor@codecore.ca",
+  status: "active",
+  password: PASSWORD,
+  is_admin: false
 )
 
 programs = Program.all
@@ -61,6 +78,20 @@ NUM_COURSES.times do
   )
 
 end
+
+CourseRole.create(
+    role: "student",
+    user_id: student_user.id,
+    course_id: Course.all.sample.id,  
+    is_archived: false
+)
+
+CourseRole.create(
+    role: "instructor",
+    user_id: instructor_user.id,
+    course_id: Course.all.sample.id,  
+    is_archived: false
+)
 
 courses = Course.all
 
