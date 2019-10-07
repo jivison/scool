@@ -2,9 +2,9 @@
 <h2>Courses</h2>
     <% @courses.map do |course| %>
         <div class="course-item">
-            <p><%= course.name %></p>
-            <small><%= link_to 'View details', course_path(course),class:"ui primary button"%></small>
+            <h3><%= link_to course.name, course_path(course)%></h3>
         </div>
     <% end %>
+
 
 </div>
