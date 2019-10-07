@@ -9,7 +9,7 @@ class CourseAssignmentsController < ApplicationController
         @course = Course.find(params[:course_id])
         @assignments = Assignment.all.select do |assignment|
             true
-            !(@course_assignment.course.course_assignments.map(&:id).include? assignment.id)
+            # !(@course_assignment.course.course_assignments.map(&:id).include? assignment.id)
         end
         @course_assignment = CourseAssignment.new due_date: Time.now + 1.days
     end
