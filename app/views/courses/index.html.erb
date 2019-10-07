@@ -2,7 +2,7 @@
 
 <% @courses.each do |course| %>
   <div>
-    <h2><%= link_to course.name, course_path(course) %></h2>
+    <%= link_to course.name, course_path(course) %>
     <p><%= course.description %><p>
     <p><%= course.status %></p>
     <p><%= course.course_type %></p>
