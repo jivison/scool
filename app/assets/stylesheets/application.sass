@@ -84,6 +84,20 @@ body
   padding: 1em
   margin: 0.5em
 
+// Navigation Bar
+.nav-container
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+
+.nav-item
+  display: flex
+  flex-direction: row
+  justify-content: center
+
+.nav-current-view
+  font-weight: bold
+
 // Sign-In
 .login
   display: flex
@@ -116,6 +130,7 @@ input[name=commit]
   flex-direction: column
   width: 3em
   box-sizing: border-box
+  cursor: pointer
   box-shadow: 2px 2px $content-shadow-color
   color: white
   border: none
