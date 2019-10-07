@@ -91,6 +91,12 @@ body
   height: 23%
   margin: 1%
 
+.form-field
+  display: flex
+  flex-direction: column
+  width: 51%
+  margin: 0.8em
+
 // Navigation Bar
 .nav-container
   display: flex
@@ -127,10 +133,7 @@ body
   flex-wrap: wrap
 
 .sign-in-field
-  display: flex
-  flex-direction: column
-  width: 51%
-  margin: 0.8em
+  @extend .form-field
 
 input[name=commit]
   background-color: $button-color
