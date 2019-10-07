@@ -27,7 +27,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 
-gem 'font-awesome-rails'
 gem 'selectize-rails'
 gem 'pry-rails'
 gem "cancancan"
@@ -56,6 +55,10 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Calendar gem. https://github.com/excid3/simple_calendar
+gem 'simple_calendar', '~> 2.0'
+
 #Semantic UI :https://github.com/doabit/semantic-ui-sass
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'semantic-ui-rails'

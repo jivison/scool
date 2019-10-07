@@ -1,5 +1,20 @@
-<h1>Courses#show</h1>
-<p>xFind me in app/views/courses/show.html.erb</p>
+<div class="ui card">
+  <div class="content">
+    <div class="header"><%=@course.name%></div>
+    <div class="meta">Course Type:<%=@course.type%></div>
+    <div class="meta">Start Date:<%=@course.start_date%></div>
+    <div class="meta">End Date:<%=@course.end_date%></div>
+    <div class="meta">Course Status:<%=@course.status%></div>
+    <div class="meta">
+    Instructors:
+    <%=@course.instructors.each do |instructors|%></div>
+    <li><%= instructors%></li>
+    <%end%%>
+    <div class="description">
+      <p><%=@course.description%></p>
+    </div>
+  </div>
+</div>
 
 <p><%= @course.name %></p>
 <p>Instructors:</p>
@@ -21,3 +36,4 @@
     </div>
     <% end %>
 <% end %>
+

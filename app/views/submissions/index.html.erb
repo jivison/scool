@@ -17,17 +17,23 @@
                 Submitted by <%= submission.submitter.full_name %> on 
                 <%= submission.submission_date.strftime('%H:%M %a, %d %b %Y') %>
             </p>
-            <div id="submission-<%= submission.id %>" style="display: none">
-                <h4><%= submission.marker.full_name %> gave this assignment
-                    <%= submission.score %> / <%= submission.course_assignment.maximum_score %>
-                    (<%= submission.grade %>%)
-                    <%= link_to 'Change', edit_course_course_assignment_submission_path(@course_assignment.course, @course_assignment, submission) %>
-                </h4>
-                <p> Feedback: <br />"<%= submission.feedback %>"</p>
-            </div>
-            <a onclick="document.getElementById(`submission-<%= submission.id %>`).style.display = document.getElementById(`submission-<%= submission.id %>`).style.display === 'none' ? '' : 'none'">
-                Toggle feedback
-            </a>
+          
+            <% if is_marked?(submission: submission) %>
+                <div id="submission-<%= submission.id %>" style="display: none">
+                    <h4><%= submission.marker.full_name %> gave this assignment
+                        <%= submission.score %> / <%= submission.course_assignment.maximum_score %>
+                        (<%= submission.grade %>%)
+                        <%= link_to 'Change', course_course_assignment_submission_edit_grade_path(submission.course, submission.course_assignment, submission) %>
+                        <%= link_to 'Remove', course_course_assignment_submission_destroy_grade_path(submission.course, submission.course_assignment, submission), method: "DELETE", data: {confirm: "Are you sure you want to remove this grade?"} %>
+                    </h4>
+                    <p> Feedback: <br />"<%= submission.feedback %>"</p>
+                </div>
+                <a onclick="document.getElementById(`submission-<%= submission.id %>`).style.display = document.getElementById(`submission-<%= submission.id %>`).style.display === 'none' ? '' : 'none'">
+                    Toggle feedback
+                </a>
+            <% else %>
+                <%= link_to 'Grade this submission', course_course_assignment_submission_new_grade_path(submission.course, submission.course_assignment, submission) %>
+            <% end %>
         </div>
     <% end %>
 
