@@ -2,7 +2,7 @@
     <%= form_for(@submission, method: "POST", url: course_course_assignment_submission_create_grade_path(@submission.course, @submission.course_assignment, @submission)) do |f| %>
         <div>
             <%= f.label :score %>
-            <%= f.select :score, 1..@submission.max_score %>
+            <%= f.select :score, 0..@submission.max_score %>
         </div>
 
         <div>
