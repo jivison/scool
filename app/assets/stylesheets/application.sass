@@ -87,6 +87,11 @@ body
   padding: 1em
   margin: 0.5em
 
+.content-row
+  flex-direction: column
+  height: 23%
+  margin: 1%
+
 // Navigation Bar
 .nav-container
   display: flex
@@ -165,12 +170,18 @@ input[type=submit]:hover
 
 .schedule-day-container
   display: flex
-  flex-direction: column
+  flex-wrap: wrap
   background-color: white
   box-sizing: border-box
   border-radius: 0.15em
   width: 8em
   height: 6em
+
+.schedule-day-content
+  flex-direction: column
+
+.schedule-day-content-text
+  padding: 0em 3em 0em 0em
 
 // Reaching into simple_calendar source to custom, tr, td, table.table.table-striped
 tr
