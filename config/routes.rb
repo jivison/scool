@@ -19,8 +19,9 @@ Rails.application.routes.draw do
         patch "update_grade"
         delete "destroy_grade"
       end
+    end 
+    post "add_attendance"
     end
-  end
 
   resources :users
 
