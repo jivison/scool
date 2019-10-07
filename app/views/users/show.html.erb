@@ -4,36 +4,35 @@
 
 <%= image_tag "#{@user.img_url}"%>
 
-<p> First name: </p>
-<p> <%= @user.first_name %> </p>
+<p> First name:
+<%= @user.first_name %> </p>
 
-<p> Last name: </p>
-<p> <%= @user.last_name %> </p>
+<p> Last name: 
+<%= @user.last_name %> </p>
 
-<p> Role: </p>
-<p> <%= @user.role.role %> </p>
+<p> Role: 
+<%= @user.current_role %> </p>
 
-<p> Course: </p>
-  <% @user.courses.each do |course|  %>
-<p> <%= course.title %> </p>
+<p> Courses:
+  <% @user.course_roles.map(&:course).each do |course|  %>
+  <p> - <%= link_to course.name, course_path(course) %> </p>
 <% end %>
 
-<p> Email: </p>
+<p> Email: 
 <p> <%= @user.email %> </p>
 
-<p> Status: </p>
-<p>
-  <% if @user.status %> active
+<p> Status:
+  <% if @user.status %>
+    active
   <% else %>
-  inactive
+    inactive
   <% end %>
+  </p>
 
 
-<% if can? :manage, :all%>
-    <%= link_to "Edit Setting", edit_user_path(@user.id) %>
-  <% end %>
 
 
 </div>
 
-<%= link_to "Click to change setting", edit_user_password_path(current_user)%>
+<%= link_to "Edit My Profile", edit_user_path(@user) %>
+<%= link_to "Change My Password", password_path(@user)%>

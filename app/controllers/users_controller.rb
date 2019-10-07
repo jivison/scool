@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user = User.new user_params
 
     if @user.save
-      session[:user_id] = @user.user_id
+      session[:user_id] = @user.id
       redirect_to root_path
     else
       render :new
@@ -21,16 +21,41 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def password
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update user_params
+      redirect_to root_path
+      flash[:notice] = 'User information updated'
+    else
+      render :edit
+    end
   end
 
   def update_password
+    @user = User.find(params[:id])
+    if @user.authenticate(params[:current_password]) && params[:password] == params[:password_confirmation]
+      if @user.update password: params[:password]
+          redirect_to :root
+      else
+          redirect_to password_path(@user)
+      end
+    else
+      redirect_to password_path
+    end
   end
 
   def destroy
+    flash[:notice] = "User deleted"
+    @user.destroy
+    redirect_to root_path
+
   end
   
   def courses
@@ -53,6 +78,8 @@ class UsersController < ApplicationController
           }
         }
       }.flatten
+  end
+
   end
 
   private
