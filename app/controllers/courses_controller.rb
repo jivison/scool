@@ -70,16 +70,6 @@ class CoursesController < ApplicationController
     @courses = Course.all
   end
 
-  private
-
-  def course_params
-    params.require(:course).permit(:name, :description, :status, :course_type, :start_date, :end_date)
-  end
-
-  def find_course
-    @course = Course.find params[:id]
-  end
-
   def add_attendance
     params.each do |key, value|
       if key.include? "data-"
@@ -90,5 +80,17 @@ class CoursesController < ApplicationController
         attendance.is_present = value
         attendance.save
       end
+    end
+  end
+
+
+  private
+
+  def course_params
+    params.require(:course).permit(:name, :description, :status, :course_type, :start_date, :end_date)
+  end
+
+  def find_course
+    @course = Course.find params[:id]
   end
 end
