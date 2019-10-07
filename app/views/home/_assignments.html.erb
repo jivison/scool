@@ -1,22 +1,20 @@
-<div class='card-tier'>
-  <div class='card'>
-    <div class='card-header'>
-      <h2>Pending Assignments</h2>
-    </div>
-    <div class='panel-container'>
-    <% @assignments[0..5].each do |assignment| %>
-    <div class="card-content" onClick="() => {window.location.href = '/course_assignments/<%= assignment.id %>'}">
-      <h3><%= link_to assignment.assignment.name, assignment_path(assignment) %></h3>
-        <small> <%= assignment.course.name %></small>
-      <h3>
-        <% if assignment.due_date > Time.now %>
-          <p>Due in: <%= assignment.due_date.strftime('%H:%M - %d %b %Y') %> </p>
-        <% else %>
-          <p>Due on: <%= assignment.due_date.strftime('%H:%M - %d %b %Y') %> ago</p>
-        <% end %>
-      </h3>
-    </div>
-    <% end %>
-    </div>
+<div class='card'>
+  <div class='card-header'>
+    <h2>Pending Assignments</h2>
+  </div>
+  <div class='panel-container'>
+  <% @assignments[0..5].each do |assignment| %>
+  <div class="card-content" onClick="() => {window.location.href = '/course_assignments/<%= assignment.id %>'}">
+    <h3><%= link_to assignment.assignment.name, assignment_path(assignment) %></h3>
+      <small> <%= assignment.course.name %></small>
+    <h3>
+      <% if assignment.due_date > Time.now %>
+        <p>Due in: <%= assignment.due_date.strftime('%H:%M - %d %b %Y') %> </p>
+      <% else %>
+        <p>Due on: <%= assignment.due_date.strftime('%H:%M - %d %b %Y') %> ago</p>
+      <% end %>
+    </h3>
+  </div>
+  <% end %>
   </div>
 </div>

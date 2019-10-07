@@ -27,6 +27,8 @@ $link-color: #356ba0
 $subtext-color: #33414f
 $admin-panel-color: #a6bed5
 $admin-panel-shadow: #494e5a
+$outline-color: #c0ceda
+$nav-white: #f2f9ff
 
 // Other
 ol, ul
@@ -71,14 +73,16 @@ h3 > a:hover
 body
   display: flex
   flex-wrap: wrap
+  justify-content: center
   background-color: $body-blue
   min-height: 100vh
+  border-style: solid
+  border-color: $bg-blue
+  border-width: 0px 15% 0px 15%
 
 .app-header
-  width: 100%
-
-.free-column
-  width: 12.5%
+  flex-order: 1
+  width: 110%
 
 .content-container
   display: flex
@@ -90,20 +94,6 @@ body
   padding: 3em
   background-color: $bg-blue
 
-.footer
-  display: flex
-  flex-direction: column
-  flex-basis: 100%
-  flex-wrap: wrap
-
-.footer > small
-  background-color: red
-  text-color: white
-  font-weight: 2
-  border-radius: 0.5em
-  border-style: solid
-  border-color: white
-
 // Base Templates
 .card
   display: flex
@@ -113,28 +103,21 @@ body
   box-shadow: 5px 5px 3px $content-shadow-color
   box-sizing: border-box
   border-radius: 0.5em
-  flex: auto
-  max-height: 40em
+  max-width: 40%
+  max-height: 40%
   padding: 1em
   margin: 1em
 
 .card-tier
   display: flex
   flex-direction: row
-  flex-basis: 100%
   flex-wrap: wrap
   justify-content: center
   margin: 1em
 
-.column
-  display: flex
-  flex-basis: 30%
-  flex-direction: row
-  flex-wrap: wrap
-  justify-content: space-evenly
-  margin: 1em
-
 .card-header
+  flex-direction: row
+  flex-order: 1
   padding: 1em
 
 .card-content
@@ -176,6 +159,10 @@ textarea
   display: flex
   flex-direction: row
   justify-content: space-evenly
+  background-color: $nav-white
+  border-width: 2px
+  border-style: solid
+  border-color: $outline-color
 
 .nav-item
   display: flex
@@ -251,8 +238,9 @@ input[type=submit]:hover
 
 .admin-panel
   display: flex
-  flex-direction: row
+  flex-direction: column
   justify-content: space-evenly
+  flex-wrap: wrap
   background-color: $admin-panel-color
   box-shadow: 5px 5px 3px $admin-panel-shadow
   box-sizing: border-box
@@ -262,27 +250,27 @@ input[type=submit]:hover
 
 .panel-header
   display: flex
-  flex-direction: column
+  flex-direction: row
   justify-content: space-between
   box-sizing: border-box
   margin: 1em
 
 .panel-row
   display: flex
-  flex-direction: column
+  flex-direction: row
   box-sizing: border-box
   max-height: 35em
   margin: 1em
 
 .panel
   display: flex
-  flex-direction: row
+  flex-direction: column
   background-color: $card-container
   box-sizing: border-box
   border-radius: 0.5em
   flex: auto
   padding: 1em
-  max-width: 30em
+  margin: 1em
 
 .panel-container
   background-color: $body-blue
