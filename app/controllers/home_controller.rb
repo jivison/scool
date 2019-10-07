@@ -3,6 +3,7 @@ class HomeController < ApplicationController
         @courses = current_user.course_roles.map(&:course)
         @assignments = @courses.map(&:course_assignments).flatten
 
+
         # role = current_user.current_role.type
         role = "instructor"
         if role === "student"

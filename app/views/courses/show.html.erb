@@ -12,23 +12,29 @@
     <p class="description">
     <p><%=@course.description%></p>
     </p>
-    <h2>Assignments</h2>
+  <%if admin_signed_in?%>
+    <%= link_to 'Edit', edit_course_path(@course) %>
+    <%= link_to 'Delete', course_path(@course), method: :delete, data: {confirm: "Are you sure?"} %>
+
     <%@course_assignments[0..2].each do |course_assignment|%>
     <li>
     <p>
+      <%=course_assignment.assignment.name%></br>
       <%= link_to(
-        course_assignment.assignment.name, course_course_assignment_path(@course, course_assignment)
+        course_assignment.assignment.name, course_course_assignment_submissions_path(@course, course_assignment)
       )%>
     </p>
      </li>
     <% end %>
-   <%=link_to "Give Marks to Assignments", course_course_assignments_path(@course)%>
+   <%=link_to "View More", course_course_assignments_path(@course)%>
 
 <div>
 <h2>Instructors</h2>
   <% @instructors.each do |user| %>
     <div>
-        <%= user.full_name %><br/>
+        <%= user.email %><br/>
+        <%= link_to user.full_name, user_path(user)%>
+    </div>
     <% end %>
   </div>
 
@@ -36,22 +42,21 @@
 <h2>Markers</h2>
   <% @markers.each do |user| %>
     <div>
-        <%= user.full_name %><br/>
+        <%= user.email %><br/>
+        <%= link_to user.full_name, user_path(user)%>
+    </div>
     <% end %>
   </div>
 
 <div>
-<h2>Enrolled Students</h2>
+<h2>Enrolled</h2>
   <% @enrolled.each do |user| %>
     <div>
-        <%= user.full_name %><br/>
         <%= user.email %><br/>
+        <%= link_to user.full_name, user_path(user)%>
+    </div>
   <% end %>
   </div>
 
-  <h2>Attendance Check</h2>
 
-
-
-
-
+<%end%>
