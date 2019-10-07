@@ -3,7 +3,8 @@
     <% @courses.map do |course| %>
         <div class="course-item">
             <p><%= course.name %></p>
-            <small><%= link_to 'View details', course_path(course) %></small>
+            <small><%= link_to 'View details', course_path(course),class:"ui primary button"%></small>
         </div>
     <% end %>
+
 </div>

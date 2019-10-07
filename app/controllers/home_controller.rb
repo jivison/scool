@@ -1,10 +1,11 @@
 class HomeController < ApplicationController
     def index
-        @courses = current_user.courses
-        @assignments = CourseAssignment.where(course_id: @courses[0].id)
+        @courses = current_user.course_roles.map(&:course)
+        @assignments = @courses.map(&:course_assignments).flatten
+
 
         # role = current_user.current_role.type
-        role = "student"
+        role = "instructor"
         if role === "student"
             render :student_homepage
         elsif role === "admin"
