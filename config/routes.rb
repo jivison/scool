@@ -32,6 +32,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :edit, :update, :destroy]
 
+  get '/users/:id/password', { to: "users#password", as: 'password' }
+  patch '/users/:id/password', { to: "users#update_password", as: 'update_password' }
+
   get "login", to: "sessions#new"
   get "sign_in", to: "sessions#new"
 

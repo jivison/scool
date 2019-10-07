@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user = User.new user_params
 
     if @user.save
-      session[:user_id] = @user.user_id
+      session[:user_id] = @user.id
       redirect_to root_path
     else
       render :new
@@ -27,16 +27,42 @@ class UsersController < ApplicationController
   def password
   end
 
+  def update
+    @user = current_user
+    if @user.update user_params
+      redirect_to root_path
+      flash[:notice] = 'User information updated'
+    else
+      render :edit
+    end
+  end
+
   def update_password
+    if @user&.authenticate params[:user][ :current_password ]
+      if @user.update user_params
+          flash[:success] = "Password updated"
+          redirect_to root_path
+      else
+          flash[:danger] = @user.errors.full_messages.join(', ')
+          redirect_to password_path(@user)
+      end
+    else
+      flash[:danger] = "You've entered an invalid current password"
+      redirect_to password_path
+    end
   end
 
   def destroy
+    flash[:notice] = "User deleted"
+    @user.destroy
+    redirect_to root_path
+
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, ::password_confirmation, :status, :img_url, :is_admin)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :status, :img_url, :is_admin)
   end
 
 
