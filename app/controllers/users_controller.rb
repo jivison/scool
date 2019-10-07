@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = user.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -32,11 +32,32 @@ class UsersController < ApplicationController
 
   def destroy
   end
+  
+  def courses
+    @user = User.find(params[:id])
+    @active_courses = @user.active_courses
+    @archived_courses = @user.archived_courses
+  end
+    
+  def due_assignments
+    # For students only
+    @assignments = current_user.current_course_role.course.course_assignments.pending
+  end
+
+  def submitted_assignments
+    # For instructors only
+    @assignments = current_user.course_roles.where(role: "instructor").map(&:course).map { |course|
+      course.course_assignments.select { |ca|
+        ca.submissions.inject(false) { |acc, submission|
+          submission.course_role_marker_id.nil? && !acc ? true : acc
+          }
+        }
+      }.flatten
 
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, ::password_confirmation, :status, :img_url, :is_admin)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :status, :img_url, :is_admin)
   end
 
 

@@ -1,14 +1,10 @@
 Rails.application.routes.draw do
   get 'courses/show'
-  # get 'assignments/index'
-  # get 'assignments/new'
-  # get 'assignments/create'
-  # get 'assignments/edit'
-  # get 'assignments/update'
-  # get 'assignments/delete'
-  # get 'assignments/destroy'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'courses/archive'
 
+
+  get 'users/:id/courses', {to: 'users#courses'}
+  
   root to: "home#index"
   get 'home/index'
 
@@ -29,6 +25,12 @@ Rails.application.routes.draw do
 
   resources :users
 
+  get '/users/:id/courses/', {to: "courses#index"}
+  get '/users/:id/assignments/', {to: "due_assignments#index"}
+
+  get '/users/:id/submitted_assignments/', {to: "users#submitted_assignments"}
+  get '/users/:id/due_assignments/', {to: "users#due_assignments"}
+
   resources :assignments
 
   resources :sessions, only: [:create, :destroy, :new]
@@ -38,5 +40,11 @@ Rails.application.routes.draw do
   get "login", to: "sessions#new"
   get "sign_in", to: "sessions#new"
 
+  get "admin/courses"
+  get "admin/users"
+  get "admin/archive"
+
 end
+
+
 

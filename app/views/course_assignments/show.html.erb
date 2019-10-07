@@ -14,7 +14,7 @@
         (<%= @course_assignment.due_date.strftime('%H:%M %a, %d %b %Y') %>)
     </p>
 
-    <% if current_user.current_role == "student" %>      
+    <% if current_user.current_role == "student" %>
 
         <h2>Your Submission</h2>
         <div class="submission">
@@ -27,7 +27,7 @@
                         <p>No URL for this assignment</p>
                     <% end %>
                     <p>
-                        Submitted on 
+                        Submitted on
                         <%= submission.submission_date.strftime('%H:%M %a, %d %b %Y') %>
                     </p>
                     <%= link_to 'Remove Submition', course_course_assignment_submission_path(submission.course, submission.course_assignment, submission), method: "DELETE", data: {confirm: "Are you sure you want to remove this submission?"} %>
@@ -40,7 +40,7 @@
 
         <% if is_marked?(@course_assignment) %>
             <p>You got: <%= @course_assignment.submissions.find_by(course_role_submitter_id: current_user.id).grade %></p>
-            <small>Marked by<%= CourseRole.find(@course_assignment.submissions.find_by(course_role_submitter_id: current_user.id).course_role_marker_id).full_name %></small>
+            <small>Marked by <%= CourseRole.find(@course_assignment.submissions.find_by(course_role_submitter_id: current_user.id).course_role_marker_id).user.full_name %></small>
         <% else %>
             <p>This assignment has not yet been marked...</p>
         <% end %>
