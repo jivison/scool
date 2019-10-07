@@ -13,7 +13,7 @@
             <small>Course Name: <%= assignment.course.name %></small>
           </div>
           <div class='card-content'>
-            <h3><%= link_to assignment.assignment.name, assignment_path(assignment) %></h3>
+            <h3><%= link_to assignment.assignment.name, course_course_assignment_path(assignment.course, assignment) %></h3>
             <h3>
                 <% if assignment.due_date > Time.now %>
                     <p>Due in <%= assignment.due_date %> </p>

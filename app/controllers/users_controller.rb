@@ -53,6 +53,7 @@ class UsersController < ApplicationController
           }
         }
       }.flatten
+  end
 
   private
 
