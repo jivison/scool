@@ -9,7 +9,7 @@
     <div class='item'>
       <div>
           <%if user_signed_in? %>
-            <span>Hi, <%=link_to "#{current_user&.full_name}", '/'%>!</span>
+            <span>Hi, <%=link_to "#{current_user&.full_name}", edit_user_path(current_user) %>!</span>
             |
             <%= link_to 'Sign Out', session_path(session), method: :delete %>
           <% else %>
