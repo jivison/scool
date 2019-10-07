@@ -13,11 +13,9 @@ NUM_COURSEASSIGNMENTS = 10
 NUM_COURSEBLOCKS = 40
 NUM_SUBMISSIONS = 5
 NUM_ATTENDANCES = 40
-NUM_PROGRAMS = 10
 
-PASSWORD = "supersecret"
+PASSWORD = "codecore"
 
-Program.delete_all
 Submission.delete_all
 Attendance.delete_all
 CourseBlock.delete_all
@@ -25,8 +23,15 @@ CourseAssignment.delete_all
 CourseRole.delete_all
 User.delete_all
 Course.delete_all
+Program.delete_all
 Assignment.delete_all
 
+
+["bootcamp", "diploma"].each do |program|
+  Program.create(
+    name: program
+  )
+end
 
 super_user = User.create(
   first_name: "ian",
@@ -37,12 +42,23 @@ super_user = User.create(
   is_admin: true
 )
 
-NUM_PROGRAMS.times do
-  name = Faker::Book.title
-  program = Program.create(
-    name: name
-  )
-end
+student_user = User.create(
+  first_name: "student",
+  last_name: "mcstudent",
+  email: "student@codecore.ca",
+  status: "active",
+  password: PASSWORD,
+  is_admin: false
+)
+
+instructor_user = User.create(
+  first_name: "instructor",
+  last_name: "mcinstructor",
+  email: "instructor@codecore.ca",
+  status: "active",
+  password: PASSWORD,
+  is_admin: false
+)
 
 programs = Program.all
 
@@ -57,11 +73,25 @@ NUM_COURSES.times do
     status:  ["active", "inactive"].sample,
     start_date: start_date,
     end_date: end_date,
-    course_type: Program.all.sample.id,
+    program_id: Program.all.sample.id,
     is_archived: [true, false].sample,
   )
 
 end
+
+CourseRole.create(
+    role: "student",
+    user_id: student_user.id,
+    course_id: Course.all.sample.id,  
+    is_archived: false
+)
+
+CourseRole.create(
+    role: "instructor",
+    user_id: instructor_user.id,
+    course_id: Course.all.sample.id,  
+    is_archived: false
+)
 
 courses = Course.all
 
