@@ -12,17 +12,17 @@ class Course < ApplicationRecord
   validates(:name, presence: true)
 
   def instructors
-    self.course_roles.where(role: "instructor")
+    self.course_roles.where(role: "instructor").map(&:user)
   end
 
   def enrolled
-    self.course_roles.where(role: "student")
+        self.course_roles.where(role: "student").map(&:user)
   end
 
   def markers
     self.course_assignments.map(&:submissions).flatten.inject([]) { |acc,submission|
       acc << CourseRole.find(submission.course_role_marker_id).user if submission.course_role_marker_id
-      acc.uniq 
+      acc.uniq
     }
   end
 

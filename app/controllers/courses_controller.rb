@@ -25,6 +25,10 @@ class CoursesController < ApplicationController
     #@course = Course.find(params[:id])
     #@course_assignment = Course_Assignment.new
     @course_assignments = @course.course_assignments
+    @instructors = @course.instructors
+    @enrolled = @course.enrolled
+    @markers = @course.markers
+
   end
 
   def edit
@@ -33,7 +37,7 @@ class CoursesController < ApplicationController
   def update
     if @course.update course_params
       redirect_to course_path(@course)
-    else 
+    else
       render:edit
     end
   end
