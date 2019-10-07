@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = user.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -33,10 +33,14 @@ class UsersController < ApplicationController
   def destroy
   end
 
+  def courses
+    @user = User.find(params[:id])
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, ::password_confirmation, :status, :img_url, :is_admin)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :status, :img_url, :is_admin)
   end
 
 

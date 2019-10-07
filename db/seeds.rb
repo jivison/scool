@@ -57,7 +57,7 @@ NUM_COURSES.times do
     status:  ["active", "inactive"].sample,
     start_date: start_date,
     end_date: end_date,
-    course_type: Program.all.sample.id,
+    programs_id: Program.all.sample.id,
     is_archived: [true, false].sample,
   )
 

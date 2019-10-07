@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'courses/show'
   get 'courses/archive'
 
-  get 'users/courses'
+  get 'users/:id/courses', {to: 'users#courses'}
   
   root to: "home#index"
   get 'home/index'
