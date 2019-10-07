@@ -8,7 +8,7 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.new 
+    @course = Course.new course_params
     if @course.save
       flash[:notice] = "Course created successfully"
       redirect_to courses_path(@course)
@@ -30,7 +30,7 @@ class CoursesController < ApplicationController
 
   def update
     if @course.update course_params
-      redirect_to courses_path(@course)
+      redirect_to course_path(@course)
     else 
       render:edit
     end

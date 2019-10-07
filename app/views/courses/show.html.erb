@@ -1,2 +1,11 @@
 <h3>Show Course</h3>
 
+<h1><%= @course.name %></h1>
+<p><%= @course.description %></p>
+<p><%= @course.status %></p>
+<p><%= @course.course_type %></p>
+<p><%= @course.start_date %></p>
+<p><%= @course.end_date %></p>
+
+<%= link_to "Edit", edit_course_path(@course) %>
+<%= link_to "Delete", course_path(@course), method: :delete, data: {confirm: "Are you sure?"} %>

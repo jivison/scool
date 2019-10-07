@@ -21,52 +21,26 @@
 
 <div>
 <%= f.label :status %>
-<%= f.text_field :status, id: "select-status" %>
+<%= f.select :status, ['active', 'inactive'] %>
 <div>
 
 <div>
 <%= f.label :course_type %>
-<%= f.text_field :course_type, id: "select-course_type" %>
+<%= f.select :course_type, ['Computer', 'Business', 'Design'] %>
 <div>
 
+<div>
+<%= f.label :start_date %>
+<%= f.datetime_select :start_date, prompt: true%>
+<div>
 
-
-
-
+<div>
+<%= f.label :end_date %>
+<%= f.datetime_select :end_date, prompt: true%>
+<div>
 
 
 <%= f.submit %>
 
 <% end %>
-
-<script>
-
-$('#select-status').selectize({
-  options: [
-    {value: 1, name: "Active"},
-    {value: 2, name: "Inactive"}
-  ],
-    create: true,
-    sortField: 'text'
-});
-
-$('#select-course_type').selectize({
-  options: [
-    {value: 1, name: "Computer"},
-    {value: 2, name: "Business"},
-    {value: 3, name: "Art"},
-
-  ],
-    create: true,
-    sortField: 'text'
-});
-
-$('#datetimepicker').datetimepicker(
-  format: 'YYYY-MM-DD HH:mm'
-)
-
-
-
-</script>
-
 
