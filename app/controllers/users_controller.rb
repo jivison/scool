@@ -40,23 +40,19 @@ class UsersController < ApplicationController
 
   def submitted_assignments
     # For instructors only
-    @assignments = current_user.course_roles.where(role: "instructor").map(&:course).map do |course|
-      course.course_assignments.select do |assignment|
-        assignment.submissions.inject(false) { |acc, submission|
-          if !is_marked?(submission: submission) && !acc
-            return true
-          else
-            return acc
-          end
+    @assignments = current_user.course_roles.where(role: "instructor").map(&:course).map { |course|
+      course.course_assignments.select { |ca|
+        ca.submissions.inject(false) { |acc, submission|
+          submission.course_role_marker_id.nil? && !acc ? true : acc
+          }
         }
-      end
-    end
+      }.flatten
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, ::password_confirmation, :status, :img_url, :is_admin)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :status, :img_url, :is_admin)
   end
 
 
