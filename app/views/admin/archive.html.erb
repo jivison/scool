@@ -13,7 +13,7 @@
         <% end %>
     </div>
 
-    <h1>Manage Archived Users</h1>
+    <h1>Archived Users</h1>
 
     <% @archive[:course_roles].each do |cr| %>
         <h3 style="color: grey"><%= cr.user.full_name %> (archived <%= cr.role %>)</h3>

@@ -24,11 +24,8 @@ Rails.application.routes.draw do
   get '/users/:id/courses/', {to: "courses#index"}
   get '/users/:id/assignments/', {to: "due_assignments#index"}
 
-  get '/admin/archive'
-  get '/admin/users'
-  get '/admin/courses'
-
-  get '/users/id:/assignments/', {to: "submitted_assignments#index"}
+  get '/users/:id/submitted_assignments/', {to: "users#submitted_assignments"}
+  get '/users/:id/due_assignments/', {to: "users#due_assignments"}
 
   resources :assignments
 
@@ -42,7 +39,7 @@ Rails.application.routes.draw do
   get "admin/courses"
   get "admin/users"
   get "admin/archive"
-  
+
 end
 
 
