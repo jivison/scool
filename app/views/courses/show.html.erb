@@ -5,9 +5,10 @@
     <p>Course Status:<%=@course.status%></p>
     <p>
     Instructors:
-    <%=@course.instructors.each do |instructors|%></p>
-    <li><%= instructors%></li>
+    <%@course.instructors.each do |instructor|%></p>
+    <li><%= instructor.full_name%></li>
     <% end %>
+
     <p class="description">
     <p><%=@course.description%></p>
     </p>
@@ -15,20 +16,21 @@
     <%= link_to 'Edit', edit_course_path(@course) %>
     <%= link_to 'Delete', course_path(@course), method: :delete, data: {confirm: "Are you sure?"} %>
 
-    <%@assignments[0..2].each do |assignment|%>
+    <%@course_assignments[0..2].each do |course_assignment|%>
     <li>
     <p>
-      <%=assignment.name%></br>
+      <%=course_assignment.assignment.name%></br>
       <%= link_to(
-        assignment.name, course_assignment_path(@course, assignment)
+        course_assignment.assignment.name, course_course_assignment_submissions_path(@course, course_assignment)
       )%>
     </p>
      </li>
-   <% end %>
+    <% end %>
    <%=link_to "View More", course_course_assignments_path(@course)%>
 
 <div>
-  <% @users.each do |user| %>
+<h2>Instructors</h2>
+  <% @instructors.each do |user| %>
     <div>
         <%= user.email %><br/>
         <%= link_to user.full_name, user_path(user)%>
@@ -36,6 +38,25 @@
     <% end %>
   </div>
 
+<div>
+<h2>Markers</h2>
+  <% @markers.each do |user| %>
+    <div>
+        <%= user.email %><br/>
+        <%= link_to user.full_name, user_path(user)%>
+    </div>
+    <% end %>
+  </div>
+
+<div>
+<h2>Enrolled</h2>
+  <% @enrolled.each do |user| %>
+    <div>
+        <%= user.email %><br/>
+        <%= link_to user.full_name, user_path(user)%>
+    </div>
+  <% end %>
+  </div>
 
 
 <% end %>

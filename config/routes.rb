@@ -23,8 +23,10 @@ Rails.application.routes.draw do
         patch "update_grade"
         delete "destroy_grade"
       end
-    end 
+    end
   end
+
+  resources :users
 
   resources :assignments
 

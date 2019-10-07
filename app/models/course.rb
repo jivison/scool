@@ -22,7 +22,7 @@ class Course < ApplicationRecord
   def markers
     self.course_assignments.map(&:submissions).flatten.inject([]) { |acc,submission|
       acc << CourseRole.find(submission.course_role_marker_id).user if submission.course_role_marker_id
-      acc.uniq 
+      acc.uniq
     }
   end
 
