@@ -1,16 +1,17 @@
 <article class="new-submission-grade">
+  <div class='card-tier'>
     <%= form_for(@submission, method: "POST", url: course_course_assignment_submission_create_grade_path(@submission.course, @submission.course_assignment, @submission)) do |f| %>
-        <div>
-            <%= f.label :score %>
-            <%= f.select :score, 0..@submission.max_score %>
-        </div>
-
-        <div>
-            <%= f.label :feedback %>
-            <%= f.text_area :feedback %>
-        </div>
-
+      <div class='form-field'>
+        <%= f.label :score %>
+        <%= f.select :score, 0..@submission.max_score %>
+      </div>
+      <div class='form-field'>
+        <%= f.label :feedback %>
+        <%= f.text_area :feedback %>
+      </div>
+      <div class='button'>
         <%= f.submit "Grade!" %>
+      </div>
     <% end %>
-      
+  </div>
 </article>

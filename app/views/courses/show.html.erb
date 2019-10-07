@@ -23,19 +23,18 @@
     <div class='card-header'>
       <h2>Course Assignments</h2>
     </div>
-    <div class='card-content'>
-      <% @course_assignments[0..2].each do |course_assignment| %>
+    <% @course_assignments[0..2].each do |course_assignment| %>
+      <div class='card-content'>
         <h3>
           <%= link_to(course_assignment.assignment.name, course_course_assignment_submissions_path(@course, course_assignment)) %>
         </h3>
-        <% end %>
+      </div>
+    <% end %>
       <div class='button'>
         <%= link_to "View More", course_course_assignments_path(@course) %>
       </div>
     </div>
   </div>
-</div>
-<div class='card-tier'>
   <div class='card'>
     <div class='card-header'>
       <h2>Instructors</h2>
@@ -53,23 +52,27 @@
     <div class='card-header'>
       <h2>Markers</h2>
     </div>
+    <div class='panel-container'>
       <% @markers.each do |user| %>
     <div class='card-content'>
         <p>Email: <%= user.email %><br/></p>
         <h3><%= link_to user.full_name, user_path(user)%></h3>
     </div>
     <% end %>
+    </div>
   </div>
   <div class='card'>
     <div class='card-header'>
       <h2>Enrolled</h2>
     </div>
+    <div class='panel-container'>
   <% @enrolled.each do |user| %>
     <div class='card-content'>
         <p>Email: <%= user.email %><br/></p>
         <h3><%= link_to user.full_name, user_path(user)%></h3>
     </div>
   <% end %>
+  </div>
   </div>
 </div>
 

@@ -1,7 +1,8 @@
 <article class="edit-submission-grade">
-  <div class='card'>
+<div class='card-tier'>
+  <div class='submission-card'>
     <div class='card-header'>
-      <h2>Edit Submission Grade</h2>
+      <h2>Edit Submission Mark</h2>
     </div>
     <div class='card-content'>
       <%= form_for(@submission, url: course_course_assignment_submission_update_grade_path(@submission.course, @submission.course_assignment, @submission)) do |f| %>
@@ -13,10 +14,11 @@
         <%= f.label :feedback %>
         <%= f.text_area :feedback %>
       </div>
-      <div class='form-field'>
+      <div class='button'>
         <%= f.submit "Update!" %>
       </div>
     <% end %>
     </div>
   </div>
+</div>
 </article>

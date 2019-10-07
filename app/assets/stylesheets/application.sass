@@ -25,6 +25,8 @@ $content-shadow-color: #505563
 $button-color: #5694c7
 $link-color: #356ba0
 $subtext-color: #33414f
+$admin-panel-color: #a6bed5
+$admin-panel-shadow: #494e5a
 
 // Other
 ol, ul
@@ -111,8 +113,9 @@ body
   box-shadow: 5px 5px 3px $content-shadow-color
   box-sizing: border-box
   border-radius: 0.5em
-  width: 40%
-  padding: 0.5em 0.5em 1em
+  flex: auto
+  max-height: 40em
+  padding: 1em
   margin: 1em
 
 .card-tier
@@ -122,7 +125,14 @@ body
   flex-wrap: wrap
   justify-content: center
   margin: 1em
-  overflow-y: auto
+
+.column
+  display: flex
+  flex-basis: 30%
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: space-evenly
+  margin: 1em
 
 .card-header
   padding: 1em
@@ -151,8 +161,15 @@ body
 .form-field
   display: flex
   flex-direction: column
-  width: 51%
+  flex-basis: 100%
   margin: 0.8em
+
+textarea
+  resize: none
+  outline: none
+  rows: 6
+  cols: auto
+  border-radius: 0.15px
 
 // Navigation Bar
 .nav-container
@@ -203,7 +220,7 @@ img
 input[name=commit]
   background-color: $button-color
   flex-direction: column
-  width: 3em
+  width: 4em
   box-sizing: border-box
   cursor: pointer
   box-shadow: 2px 2px $content-shadow-color
@@ -230,6 +247,62 @@ input[type=submit]:hover
   transition: 0.3s
   box-shadow: 6px 6px 3.5px $content-shadow-color
 
+// Admin
+
+.admin-panel
+  display: flex
+  flex-direction: row
+  justify-content: space-evenly
+  background-color: $admin-panel-color
+  box-shadow: 5px 5px 3px $admin-panel-shadow
+  box-sizing: border-box
+  border-radius: 0.5em
+  padding: 1em 2em 1em
+  margin: 1.5em
+
+.panel-header
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  box-sizing: border-box
+  margin: 1em
+
+.panel-row
+  display: flex
+  flex-direction: column
+  box-sizing: border-box
+  max-height: 35em
+  margin: 1em
+
+.panel
+  display: flex
+  flex-direction: row
+  background-color: $card-container
+  box-sizing: border-box
+  border-radius: 0.5em
+  flex: auto
+  padding: 1em
+  max-width: 30em
+
+.panel-container
+  background-color: $body-blue
+  display: flex
+  box-sizing: border-box
+  flex-direction: column
+  justify-content: left
+  padding: 1em
+  max-height: 30em
+  overflow: scroll
+
+.panel-content
+  flex-direction: column
+  background-color: $container-color
+  max-width: 80%
+  box-sizing: border-box
+  border-radius: 0.5em
+  padding: 0.5em
+  margin: 0.5em
+
 // Calendar Cards
 .schedule-card
   @extend .member-card
@@ -249,6 +322,22 @@ input[type=submit]:hover
 
 .schedule-day-content-text
   padding: 0em 3em 0em 0em
+
+// Submissions
+
+.submission-card
+  @extend .card
+  width: 60%
+
+.card-content > form
+  display: flex
+  justify-content: center
+  flex-wrap: wrap
+
+form.edit_submission > div
+  display: flex
+  flex-direction: column
+  flex-basis: 100%
 
 // Reaching into simple_calendar source to custom, tr, td, table.table.table-striped
 tr
