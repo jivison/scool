@@ -16,7 +16,10 @@ class Course < ApplicationRecord
   end
 
   def markers
-    self.course_assignments.map(&:submissions)
+    self.course_assignments.map(&:submissions).flatten.inject([]) { |acc,submission|
+      acc << CourseRole.find(submission.course_role_marker_id).user if submission.course_role_marker_id
+      acc.uniq 
+    }
   end
 
   private
@@ -24,3 +27,4 @@ class Course < ApplicationRecord
     self.status ||= "new"
   end
 end
+
