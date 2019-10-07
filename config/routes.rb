@@ -31,6 +31,9 @@ Rails.application.routes.draw do
   get '/users/:id/submitted_assignments/', {to: "users#submitted_assignments"}
   get '/users/:id/due_assignments/', {to: "users#due_assignments"}
 
+  get '/users/:id/new_role', to: "users#new_role", as: :new_role
+  post 'users/:id/create_role', to: "users#create_role", as: :create_role
+
   resources :assignments
 
   resources :sessions, only: [:create, :destroy, :new]
