@@ -26,6 +26,45 @@ $button-color: #5694c7
 $link-color: #356ba0
 $subtext-color: #33414f
 
+// Other
+ol, ul
+  list-style: none
+
+small
+  color: $subtext-color
+
+div.button > a:hover
+  box-shadow: 1px 1px $content-shadow-color
+  transform: translateX(0.5px) translateY(0.5px)
+
+div.button > a
+  font-size: 70%
+  text-color: white
+  background-color: $button-color
+  flex-direction: column
+  width: 8em
+  box-sizing: border-box
+  cursor: pointer
+  box-shadow: 2px 2px $content-shadow-color
+  color: white
+  border: none
+  justify-content: center
+  border-radius: 0.3em
+  transition: 0.1s
+  padding: 0.3em
+  margin: 0.5em
+
+h3 > p
+  font-size: 12px
+  color: $subtext-color
+
+h3 > a 
+  color: $link-color
+  transform: translate(6px)
+
+h3 > a:hover
+  border-left: 3px solid $link-color
+
 // Site skin
 body
   display: flex
@@ -49,6 +88,20 @@ body
   padding: 3em
   background-color: $bg-blue
 
+.footer
+  display: flex
+  flex-direction: column
+  flex-basis: 100%
+  flex-wrap: wrap
+
+.footer > small
+  background-color: red
+  text-color: white
+  font-weight: 2
+  border-radius: 0.5em
+  border-style: solid
+  border-color: white
+
 // Base Templates
 .card
   display: flex
@@ -69,6 +122,7 @@ body
   flex-wrap: wrap
   justify-content: center
   margin: 1em
+  overflow-y: auto
 
 .card-header
   padding: 1em
@@ -104,12 +158,20 @@ body
 .nav-container
   display: flex
   flex-direction: row
-  justify-content: space-between
+  justify-content: space-evenly
 
 .nav-item
   display: flex
   flex-direction: row
   justify-content: center
+  width: 30%
+
+img
+  background-color: none
+  flex-direction: row
+  box-sizing: border-box
+  cursor: pointer
+  border: none
 
 .nav-current-view
   font-weight: bold
@@ -194,41 +256,3 @@ tr
 
 .calendar-heading
   display: none
-
-// Other
-ol, ul
-  list-style: none
-
-small
-  color: $subtext-color
-
-div > a
-  text-color: white
-  background-color: $button-color
-  flex-direction: column
-  width: 8em
-  box-sizing: border-box
-  cursor: pointer
-  box-shadow: 2px 2px $content-shadow-color
-  color: white
-  border: none
-  justify-content: center
-  border-radius: 0.3em
-  transition: 0.1s
-  padding: 0.3em
-  margin: 0.2em
-
-div > a:hover
-  box-shadow: 1px 1px $content-shadow-color
-  transform: translateX(0.5px) translateY(0.5px)
-
-h3 > p
-  font-size: 12px
-  color: $subtext-color
-
-h3 > a 
-  color: $link-color
-  transform: translate(6px)
-
-h3 > a:hover
-  border-left: 3px solid $link-color

@@ -1,8 +1,15 @@
-<h3>Show Page</h3>
-
-<h1><%= @assignment.name %></h1>
-<p><%= @assignment.description %></p>
-
-<%= link_to "Edit", edit_assignment_path(@assignment) %>
-|
-<%= link_to "Delete", assignment_path(@assignment), method: :delete, data: {confirm: "Are you sure?"} %>
+<div class='card-tier'>
+  <div class='card'>
+    <div class='card-header'>
+      <h3>Show Page</h3>
+    </div>
+    <div class='card-content'>
+      <h2><%= @assignment.name %></h1>
+      <p><%= @assignment.description %></p>
+    </div>
+    <div class='button'>
+      <%= link_to "Edit", edit_assignment_path(@assignment) %>
+      <%= link_to "Delete", assignment_path(@assignment), method: :delete, data: {confirm: "Are you sure?"} %>
+    </div>
+  </div>
+</div>
