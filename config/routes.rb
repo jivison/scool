@@ -23,8 +23,12 @@ Rails.application.routes.draw do
         patch "update_grade"
         delete "destroy_grade"
       end
+<<<<<<< HEAD
     end 
     post "add_attendance"
+=======
+    end
+>>>>>>> 3f057a952a23f14b3f426c5b2d4afe5894d19902
   end
 
   resources :users
