@@ -37,9 +37,29 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    flash[:notice] = "Course deleted"
+    CourseAssignment.where(course_id: @course.id).each do |ca|
+      ca.submissions.each do |s|
+        s.destroy
+      end
+      ca.destroy
+    end
+
+    
+    CourseRole.where(course_id: @course.id).each do |cr|
+      CourseAssignment.where(course_role_assigner_id: cr.id).each do |ca|
+        ca.destroy
+      end
+
+      Submission.where(course_role_marker_id: cr.id).each do |s|
+        s.destroy
+      end
+      Submission.where(course_role_submitter_id: cr.id).each do |s|
+        s.destroy
+      end
+      cr.destroy
+    end
     @course.destroy
-    redirect_to courses_path
+    redirect_to :root
   end
 
   private

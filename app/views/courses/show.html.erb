@@ -1,5 +1,5 @@
     <p><%=@course.name%></p>
-    <p>Course Type:<%=@course.type%></p>
+    <p>Course Type:<%=@course.course_type%></p>
     <p>Start Date:<%=@course.start_date%></p>
     <p>End Date:<%=@course.end_date%></p>
     <p>Course Status:<%=@course.status%></p>
@@ -7,7 +7,7 @@
     Instructors:
     <%=@course.instructors.each do |instructors|%></p>
     <li><%= instructors%></li>
-    <%end%%>
+    <% end %>
     <p class="description">
     <p><%=@course.description%></p>
     </p>
@@ -24,19 +24,18 @@
       )%>
     </p>
      </li>
-   <%end%>
+   <% end %>
    <%=link_to "View More", course_course_assignments_path(@course)%>
 
 <div>
   <% @users.each do |user| %>
     <div>
-        <%= user.first_name %><br/>
         <%= user.email %><br/>
-        <%= link_to user.first_name, user_path(user)%>
+        <%= link_to user.full_name, user_path(user)%>
     </div>
-    <%end%>
+    <% end %>
   </div>
 
 
 
-<%end%>
+<% end %>
