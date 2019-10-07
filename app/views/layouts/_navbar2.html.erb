@@ -40,12 +40,12 @@
       </div>
       <% if !admin_signed_in? && user_signed_in? %>
           <div class='item'>
-            <%= link_to image_tag('profile_pic.png', alt: 'profile', style: "width:50px"), '/'%>
+            <%= link_to image_tag('profile_pic.png', alt: 'profile', style: "width:50px"), user_path(current_user) %>
             <%#we need a route to view all courses%>
           </div>
           <% elsif admin_signed_in? %>
           <div class='item'>
-            <%= link_to image_tag('profile_pic.png', alt: 'profile', style: "width:50px"), '/'%>
+            <%= link_to image_tag('profile_pic.png', alt: 'profile', style: "width:50px"),  user_path(current_user) %>
             <%#we need a route to view all courses%>
           </div>
           <% end %>
