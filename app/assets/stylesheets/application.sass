@@ -51,6 +51,7 @@ body
 .card-tier
   display: flex
   flex-direction: row
+  flex-wrap: wrap
   justify-content: space-around
   margin: 2.5em
 
@@ -86,6 +87,17 @@ body
   padding: 1em
   margin: 0.5em
 
+.content-row
+  flex-direction: column
+  height: 23%
+  margin: 1%
+
+.form-field
+  display: flex
+  flex-direction: column
+  width: 51%
+  margin: 0.8em
+
 // Navigation Bar
 .nav-container
   display: flex
@@ -99,6 +111,12 @@ body
 
 .nav-current-view
   font-weight: bold
+
+// Independent Cards
+.independent-card
+  @extend .card
+  display: inline-block
+  width: auto
 
 // Sign-In
 .login
@@ -122,10 +140,7 @@ body
   flex-wrap: wrap
 
 .sign-in-field
-  display: flex
-  flex-direction: column
-  width: 51%
-  margin: 0.8em
+  @extend .form-field
 
 input[name=commit]
   background-color: $button-color
@@ -164,12 +179,18 @@ input[type=submit]:hover
 
 .schedule-day-container
   display: flex
-  flex-direction: column
+  flex-wrap: wrap
   background-color: white
   box-sizing: border-box
   border-radius: 0.15em
   width: 8em
   height: 6em
+
+.schedule-day-content
+  flex-direction: column
+
+.schedule-day-content-text
+  padding: 0em 3em 0em 0em
 
 // Reaching into simple_calendar source to custom, tr, td, table.table.table-striped
 tr
@@ -181,3 +202,6 @@ tr
 // Other
 ol, ul
   list-style: none
+
+small
+  color: grey

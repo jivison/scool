@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  get 'courses/show'
+  get 'courses/archive'
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+  get 'users/:id/courses', {to: 'users#courses'}
+  
   root to: "home#index"
   get 'home/index'
 
@@ -16,8 +19,9 @@ Rails.application.routes.draw do
         patch "update_grade"
         delete "destroy_grade"
       end
+    end 
+    post "add_attendance"
     end
-  end
 
   resources :users
 
