@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = user.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -32,7 +32,13 @@ class UsersController < ApplicationController
 
   def destroy
   end
-
+  
+  def courses
+    @user = User.find(params[:id])
+    @active_courses = @user.active_courses
+    @archived_courses = @user.archived_courses
+  end
+    
   def due_assignments
     # For students only
     @assignments = current_user.current_course_role.course.course_assignments.pending
@@ -47,7 +53,6 @@ class UsersController < ApplicationController
           }
         }
       }.flatten
-  end
 
   private
 
