@@ -38,6 +38,16 @@
     <%end%>
   </div>
 
+<div>
+  <% @.each do |user| %>
+    <div>
+        <%= user.first_name %><br/>
+        <%= user.email %><br/>
+        <%= link_to user.first_name, user_path(user)%>
+    </div>
+    <%end%>
+  </div>
+
 
 
 <%end%>
