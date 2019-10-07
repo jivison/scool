@@ -16,7 +16,7 @@
   <% if admin_signed_in? %>
     <%= link_to 'Edit', edit_course_path(@course) %>
     <%= link_to 'Delete', course_path(@course), method: :delete, data: {confirm: "Are you sure?"} %>
-
+  <% end %>
     <h2>Course Assignments</h2>
     <ol>
       <% @course_assignments[0..2].each do |course_assignment| %>
@@ -27,8 +27,9 @@
       </li>
       <% end %>
     </ol>
-   <%= link_to "View More", course_course_assignments_path(@course) %>
 
+   <%=link_to "View More", course_course_assignments_path(@course)%>
+<%if admin_signed_in?%>
 <div>
 <h2>Instructors</h2>
   <% @instructors.each do |user| %>
