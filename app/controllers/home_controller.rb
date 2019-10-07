@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
     def index
-        @courses = [Course.last]
+        @courses = current_user.courses
         @assignments = CourseAssignment.where(course_id: @courses[0].id)
 
         # role = current_user.current_role.type

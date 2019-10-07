@@ -12,11 +12,11 @@ class Course < ApplicationRecord
   validates(:name, presence: true)
 
   def instructors
-    self.course_roles.where(role: "instructor")
+    self.course_roles.where(role: "instructor").map(&:userp)
   end
 
   def enrolled
-    self.course_roles.where(role: "student")
+    self.course_roles.where(role: "student").map(&:user)
   end
 
   def markers
