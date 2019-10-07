@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :find_user, only: [:edit, :show, :update, :password, :update_password]
 
   def new
     @user = User.new
@@ -24,12 +25,10 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def password
-    @user = current_user
-  end
+  
 
   def update
-    @user = current_user
+   
     if @user.update user_params
       redirect_to root_path
       flash[:notice] = 'User information updated'
@@ -38,11 +37,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def password
+   
+  end
+
   def update_password
+   
+    
     if @user&.authenticate params[:user][ :current_password ]
+      
       if @user.update user_params
+        
           flash[:success] = "Password updated"
           redirect_to root_path
+        
       else
           flash[:danger] = @user.errors.full_messages.join(', ')
           redirect_to password_path(@user)
@@ -51,6 +59,8 @@ class UsersController < ApplicationController
       flash[:danger] = "You've entered an invalid current password"
       redirect_to password_path
     end
+
+   
   end
 
   def destroy
@@ -64,6 +74,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :status, :img_url, :is_admin)
+  end
+
+  def find_user
+    @user = User.find params[:id]
   end
 
 
