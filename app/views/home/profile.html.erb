@@ -1,13 +1,20 @@
-<h1>You want to change your profile setting?</h1>
-<% if @user.errors.any? %>
-    <ul>
-        <% @user.errors.full_messages.each do |msg|%>
-        <li><%=msg%></li>
-        <%end%>
-    </ul>
-<%end%>
-
-<%= form_with model: @user, url:'', local: true do |f|%>
+<div class='card-tier'>
+  <div class='card'>
+    <div class='card-header'>
+      <h1>You want to change your profile setting?</h1>
+    </div>
+    <div class='card-content'>
+      <% if @user.errors.any? %>
+        <ul>
+          <% @user.errors.full_messages.each do |msg|%>
+          <li><%=msg%></li>
+          <%end%>
+        </ul>
+      <%end%>
+      <%= form_with model: @user, url:'', local: true do |f|%>
+    </div>
+  </div>
+</div>
 
 
 
