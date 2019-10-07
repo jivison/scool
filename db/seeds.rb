@@ -6,9 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
-NUM_USERS = 25
-NUM_COURSES = 35
+NUM_USERS = 50
+NUM_COURSES = 10
 NUM_ASSIGNMENTS = 40
 NUM_COURSEASSIGNMENTS = 10
 NUM_COURSEBLOCKS = 40
