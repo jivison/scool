@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user = User.new user_params
 
     if @user.save
-      session[:user_id] = @user.id
+      # session[:user_id] = @user.id
       redirect_to root_path
     else
       render :new
@@ -80,6 +80,25 @@ class UsersController < ApplicationController
       }.flatten
   end
 
+  end
+
+  def new_role
+    @user = User.find(params[:id])
+    @role = CourseRole.new
+    @courses = Course.all
+  end
+
+  def create_role
+    @user = User.find(params[:id])
+
+    CourseRole.create(
+      user: @user,
+      role: params[:course_role][:role],
+      course_id: params[:course_role][:course_id],
+      is_archived: false
+    )
+
+    redirect_to @user
   end
 
   private
