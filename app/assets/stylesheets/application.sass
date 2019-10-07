@@ -16,7 +16,6 @@
  */
 @import "semantic-ui"
 
-
 // Colors
 $body-blue: #e0f0ff
 $bg-blue: #e8f4ff
@@ -24,6 +23,8 @@ $card-container: #bddfff
 $container-color: #8fc9ff
 $content-shadow-color: #505563
 $button-color: #5694c7
+$link-color: #356ba0
+$subtext-color: #33414f
 
 // Site skin
 body
@@ -48,13 +49,6 @@ body
   padding: 3em
   background-color: $bg-blue
 
-.card-tier
-  display: flex
-  flex-direction: row
-  flex-wrap: wrap
-  justify-content: space-around
-  margin: 2.5em
-
 // Base Templates
 .card
   display: flex
@@ -66,6 +60,14 @@ body
   border-radius: 0.5em
   width: 40%
   padding: 0.5em 0.5em 1em
+  margin: 1em
+
+.card-tier
+  display: flex
+  flex-direction: row
+  flex-basis: 100%
+  flex-wrap: wrap
+  justify-content: center
   margin: 1em
 
 .card-header
@@ -111,12 +113,6 @@ body
 
 .nav-current-view
   font-weight: bold
-
-// Independent Cards
-.independent-card
-  @extend .card
-  display: inline-block
-  width: auto
 
 // Sign-In
 .login
@@ -204,4 +200,35 @@ ol, ul
   list-style: none
 
 small
-  color: grey
+  color: $subtext-color
+
+div > a
+  text-color: white
+  background-color: $button-color
+  flex-direction: column
+  width: 8em
+  box-sizing: border-box
+  cursor: pointer
+  box-shadow: 2px 2px $content-shadow-color
+  color: white
+  border: none
+  justify-content: center
+  border-radius: 0.3em
+  transition: 0.1s
+  padding: 0.3em
+  margin: 0.2em
+
+div > a:hover
+  box-shadow: 1px 1px $content-shadow-color
+  transform: translateX(0.5px) translateY(0.5px)
+
+h3 > p
+  font-size: 12px
+  color: $subtext-color
+
+h3 > a 
+  color: $link-color
+  transform: translate(6px)
+
+h3 > a:hover
+  border-left: 3px solid $link-color
