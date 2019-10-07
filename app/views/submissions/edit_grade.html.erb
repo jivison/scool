@@ -1,0 +1,16 @@
+<article class="edit-submission-grade">
+    <%= form_for(@submission, url: course_course_assignment_submission_update_grade_path(@submission.course, @submission.course_assignment, @submission)) do |f| %>
+        <div>
+            <%= f.label :score %>
+            <%= f.select :score, 0..@submission.max_score %>
+        </div>
+
+        <div>
+            <%= f.label :feedback %>
+            <%= f.text_area :feedback %>
+        </div>
+
+        <%= f.submit "Update!" %>
+    <% end %>
+      
+</article>

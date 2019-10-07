@@ -53,5 +53,4 @@ class CoursesController < ApplicationController
   def find_course
     @course = Course.find params[:id]
   end
-
 end

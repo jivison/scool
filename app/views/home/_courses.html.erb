@@ -1,9 +1,0 @@
-<div class="courses">
-<h2>Courses</h2>
-    <% @courses.map do |course| %>
-    <div class="course-item">
-        <p><%= course[:title] %></p>
-        <small><%= link_to 'View details', "#" %></small>
-    </div>
-    <% end %>
-</div>

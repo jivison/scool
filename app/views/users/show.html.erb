@@ -1,0 +1,39 @@
+<h4>User Detail</h4>
+
+<div>
+
+<%= image_tag "#{@user.img_url}"%>
+
+<p> First name: </p>
+<p> <%= @user.first_name %> </p>
+
+<p> Last name: </p>
+<p> <%= @user.last_name %> </p>
+
+<p> Role: </p>
+<p> <%= @user.role.role %> </p>
+
+<p> Course: </p>
+  <% @user.courses.each do |course|  %>
+<p> <%= course.title %> </p>
+<% end %>
+
+<p> Email: </p>
+<p> <%= @user.email %> </p>
+
+<p> Status: </p>
+<p>
+  <% if @user.status %> active
+  <% else %>
+  inactive
+  <% end %>
+
+
+<% if can? :manage, :all%>
+    <%= link_to "Edit Setting", edit_user_path(@user.id) %>
+  <% end %>
+
+
+</div>
+
+<%= link_to "Click to change setting", edit_user_password_path(current_user)%>
