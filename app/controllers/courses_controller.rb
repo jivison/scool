@@ -22,7 +22,9 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find(params[:id])
+    #@course = Course.find(params[:id])
+    #@course_assignment = Course_Assignment.new
+    @course_assignments = @course.course_assignments
   end
 
   def edit
